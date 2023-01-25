@@ -63,7 +63,6 @@ if ($str_check) {
         //$streditar = TRUE;
         //$streliminar =TRUE;
 
-
         // print_r($numpetpas1);
         // die("SELECT COUNT(*) FROM peticiones WHERE PCveUsufk = " . $__SESSION->getValueSession('cveusuario') . "AND PPaso = 1 AND YEAR(PFecha) = '" . $__SESSION->getValueSession('fecregsis') . "'");
         if ($__SESSION->getValueSession('desperfil') == 'ADMINISTRADOR') {
