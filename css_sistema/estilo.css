@@ -1,0 +1,22 @@
+.encabezado{
+	position:fixed;
+	margin-top:-100px;
+	margin-left:0px;
+    margin-right:100px;
+	font-family: Courier, monospace;
+	width:100%;
+	height:100px;
+	background: rgba(255, 255, 255,1);
+	z-index:999;
+	border-radius:0px;
+	}
+		
+#flotante{ 
+height:50%;
+width:50%;
+z-index:999;
+margin-top:5%;
+margin-left:25%;
+margin-right:100px;
+border-radius:3%;
+}
