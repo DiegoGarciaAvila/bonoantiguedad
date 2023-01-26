@@ -69,7 +69,7 @@ $banderaPrincipal = false;
 //GEM
 if ($estadogrupo == 2) {
     $CveEstatus=4;
-    if ($antiguedadAnios >= 31 || ($antiguedadAnios >= 30 && $antiguedadMeses >= 6 && $antiguedadDias >= 1)) {
+    if ($antiguedadAnios >= 30 || ($antiguedadAnios >= 29 && $antiguedadMeses >= 6 && $antiguedadDias >= 1)) {
         $banderaPrincipal=true;
     } else {
         ?>

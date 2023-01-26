@@ -92,8 +92,8 @@ include_once('./librerias/PDOConsultas.php');
         $consulta2->connect($CFG_HOST[0], $CFG_USER[0], $CFG_DBPWD[0], $CFG_DBASE[0]);
         $select = $consulta2->executeQuery("SELECT GCveGac,GNombre,file_oficio FROM gaceta");
         ?>
-        <section id="card-demo-example">
-          <div class="row match-height">
+        <section class='text-center' id="card-demo-example">
+          <div class="row match-height justify-content-md-center">
             <?php
 
             for ($i = 0; $i < count($select); $i++) {

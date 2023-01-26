@@ -45,11 +45,14 @@ $struser = "";
                     <div class="auth-inner row m-0">
                         <!-- Brand logo-->
                         <a class="brand-logo" href="#">
+                            
                             <img src="imagenes_sistema/desiciones.jpg" width="28%">
                             <h2 class="brand-text text-primary ms-1" style="color: black;"></h2>
-                            <div style="width:40%; justify-content: space-around; display: flex;" class="align-self-center ">
+                            
+                            <div style="width:40%; justify-content: space-around; display: flex;" class="align-self-center col-sm-4">
                                 <input type="button" class="btn btn-outline-primary " onclick="location.href='./convocatoria_login.php'" value="CONVOCATORIAS" />
-
+                            </div>
+                            <div style="width:40%; justify-content: space-around; display: flex;" class="align-self-center col-sm-4">
                                 <input type="button" class="btn btn-outline-primary " onclick="location.href='./gacetas_login.php'" value="GACETAS" />
 
                             </div>

@@ -10,9 +10,12 @@ include_once('./librerias/PDOConsultas.php');
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Convocatorias</title>
+  <title>Document</title>
   <link href="../css_sistema/estiloslogin.css" rel="stylesheet" type="text/css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+
+
+
 </head>
 <style>
   a {
@@ -23,9 +26,12 @@ include_once('./librerias/PDOConsultas.php');
   a:hover {
     color: #07d544;
     cursor: pointer;
+
+
   }
 
   .ventana {
+
     background: rgba(254, 254, 254, 1);
     width: 30%;
     color: rgba(255, 255, 255, 1);
@@ -89,8 +95,8 @@ include_once('./librerias/PDOConsultas.php');
 
 
         ?>
-        <section id="card-demo-example">
-          <div class="row match-height">
+        <section class='text-center' id="card-demo-example">
+          <div class="row match-height justify-content-md-center">
             <?php
 
             for ($i = 0; $i < count($select); $i++) {
@@ -128,7 +134,40 @@ include_once('./librerias/PDOConsultas.php');
         </section>
 
 
-   
+        <?php
+        include $pag_centro;
+        if (isset($_REQUEST['submit_btn'])) {
+          $Correo = $_POST["Correo2"];
+          $CveCD = $_POST["CveCD2"];
+          $TelCD = $_POST["TelCD2"];
+          $CveCT = $_POST["CveCT2"];
+          $TelCT = $_POST["TelCT2"];
+          //print_r($Correo);
+          //print_r($CveCD);
+          //print_r($TelCD);
+          //print_r($CveCT);
+          //print_r($TelCT);
+          //die();
+          $consulta2 = new PDOConsultas();
+          $consulta2->connect($CFG_HOST[0], $CFG_USER[0], $CFG_DBPWD[0], $CFG_DBASE[0]);
+
+          $actualisausuario = " UPDATE sb_usuario SET " .
+            " email = '" . $Correo . "'," .
+            " CveCD = " . $CveCD . "," .
+            " TelCD = '" . $TelCD . "'," .
+            " CveCT = " . $CveCT . "," .
+            " TelCT = '" . $TelCT . "'" .
+            " WHERE cve_usuario = " . $__SESSION->getValueSession('cveusuario') . "";
+          //sleep(10);
+          $consulta->executeQuery($actualisausuario);
+
+          if ($consulta->lastInsertId != 'null') {
+            echo ("<meta http-equiv='refresh' content='1'>");
+          } else {
+            echo  $consulta->error;
+          }
+        }
+        ?>
 
 
       </div>
@@ -151,7 +190,6 @@ include_once('./librerias/PDOConsultas.php');
 
     }
   </script>
-  
 
 </body>
 
