@@ -42,7 +42,7 @@ if ($str_check) {
         //$strnuevo = TRUE;
         //$streditar = TRUE;
         //$streliminar =TRUE;
-        if ($__SESSION->getValueSession('desperfil') == 'ADMINISTRADOR') {
+        if ($__SESSION->getValueSession('desperfil') == 'ADMINISTRADOR' || $__SESSION->getValueSession('desperfil') == 'CAPTURA' ) {
             //$strnuevo = TRUE;
             //$streditar = TRUE;
             //$streliminar =TRUE;
