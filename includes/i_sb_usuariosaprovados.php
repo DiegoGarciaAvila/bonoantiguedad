@@ -32,7 +32,7 @@ if ($str_check) {
         //CAMBIA EL TEXTO DEL BOTON
         $boton_texto = "NUEVO REGISTRO";
         $campo = array();
-        $entidad = 'USUARIOS QUE YA TIENEN BONO';
+        $entidad = 'PREREGISTRO';
         $btn_guardar = 'GUARDAR';
         $id_prin = 'cve_usuario';
         $strWhere = '';
@@ -44,14 +44,14 @@ if ($str_check) {
             $streditar = TRUE;
             $streliminar = TRUE;
 
-            $strWhere = ' WHERE CveE = 3';
+            $strWhere = ' WHERE CveE = 1';
         } else {
 
             //$strnuevo = TRUE;
             $streditar = TRUE;
             $streliminar = FALSE;
 
-            $strWhere = ' WHERE CveE = 3' ;
+            $strWhere = ' WHERE CveE = 1' ;
         }
         /************************SECCION DE LOS BOTONES*****************************************************************************************/
         //$strnuevo = ($__SESSION->getValueSession('alta')) ? TRUE : FALSE;
@@ -60,7 +60,7 @@ if ($str_check) {
 
 
 
-        //$str_impresora = TRUE; 
+        //$str_impresora = TRUE;
         //$str_impresora_destino='fichas_reporte_sistema/rep_sb_usuario.php?';
         /************************FIN  DE LA SECCION DE LOS BOTONES*******************************************************************************/
 
@@ -228,8 +228,8 @@ if ($str_check) {
         /*************************************************************************************************/
 
         /***************************************SECCION DE LOS SELECTS EN CASCADA (EJEMPLO)****************************************************
-         $select_cascada[] = array(
-            "llave1" => ('cve_estado'), "llave2" => ('cve_estado'),"origen" => ('cve_estado_origen'),"destino" => ('cve_municipio_origen'),"datos" => ('des_municipio'), "tablas" => array('cat_estado', 'cat_municipio'),"condicion" => (''), "archivo" => ('../' . $NOMBRE_CARPETA_PRINCIPAL . '/getElementos/get_elementos.php')
+        $select_cascada[] = array(
+        "llave1" => ('cve_estado'), "llave2" => ('cve_estado'),"origen" => ('cve_estado_origen'),"destino" => ('cve_municipio_origen'),"datos" => ('des_municipio'), "tablas" => array('cat_estado', 'cat_municipio'),"condicion" => (''), "archivo" => ('../' . $NOMBRE_CARPETA_PRINCIPAL . '/getElementos/get_elementos.php')
         );
 
 
@@ -242,13 +242,13 @@ if ($str_check) {
         //IMAGEN
         //file
         //checkbox
-        //radio 
+        //radio
 
 
         /*********************POSICION DE LOS DATOS EN EL ARRAY FIELD****************************/
         /*********************POSICION DE LOS DATOS EN EL ARRAY FIELD****************************/
         //0.- CLAVE PRINCIPAL DE LA BASE DE DATOS
-        //1.- NOMBRE DE LA ETIQUETA DE LAS CABECERAS DEL CAMPO AMOSTRAR 
+        //1.- NOMBRE DE LA ETIQUETA DE LAS CABECERAS DEL CAMPO AMOSTRAR
         //2.- VISIBILIDAD DEL CAMPO
         //3.- TIPO DE DATO PARA EL FORMULARIO
         //4.- CAMPO OBLIGATORIO O NO OBLIGATORIO (TENER EN CUENTA EL TIPO DE LLAVE DEL CAMPO PRINCIPAL YA QUE EN SU MAYORIA ES AUTOINCREMENTABLE EN ESE CASE SE DEBE DE ESCONDER)
@@ -256,7 +256,7 @@ if ($str_check) {
         //6.- VECTOR DE DATOS QUE CONTIENE UN PAR DE ARRAYS PARA LA CONSTRUCCION DINAMICA DE LOS SELECTS
         //7.- VECTOR DE LOS PESOS PARA LA CONSTRUCCION DE LOS SEPARADORES Y LA DISTRIBUCION DE LOS CAMPOS, (ARRAY DEFINIDO EN 12 POSICIONES)
         //8.- TAMAÑO DEL CAMPO EN LA PANTALLA 0
-        //9.- LLENADO DE CAMPO PREDEFINIDO PANTALLA 2 y 3, AGREGA EL VALOR VALUE    
+        //9.- LLENADO DE CAMPO PREDEFINIDO PANTALLA 2 y 3, AGREGA EL VALOR VALUE
         //10.- AREA DE ATRIBUTOS DEL INPUT
         //11.-ETIQUETA PEQUEÑA PARA ESPECIFICACIONES
         //12.-MODALS
