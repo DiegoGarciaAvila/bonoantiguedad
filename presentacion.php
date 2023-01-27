@@ -73,6 +73,7 @@ if ($estadogrupo == 2) {
        // $CveEstatus=1;
         $banderaPrincipal=true;
     } else {
+        $banderaPrincipal=false;
         $CveEstatus=2;
         ?>
         <div class="ventana" id="venta">

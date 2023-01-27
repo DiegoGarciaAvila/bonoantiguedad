@@ -148,7 +148,7 @@ $campos = array();
                         $required = "";
                     }
                     if (strlen($val[9]) > 0 && $val[9] != '') {
-                        $DATO_PREDEFINIDO = " value='" . $val[9] . "'";
+                        $DATO_PREDEFINIDO = "value =\"" . $val[9] . "\" ";
                     } else {
                         $DATO_PREDEFINIDO = '';
                     }

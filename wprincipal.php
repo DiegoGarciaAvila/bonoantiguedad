@@ -933,7 +933,7 @@ if ($str_check) {
             $(document).ready(function() {
 
 
-                if (perfil == 1 || (probando != 5 && probando != 3 && probando != 2 ) ) {
+                if ((perfil == 1 || perfil == 2) || (probando != 5 && probando != 3 && probando != 2 ) ) {
                     //Se muestra el menu lateral
                     document.getElementById("menuvertical").setAttribute("style", "display: block");
 

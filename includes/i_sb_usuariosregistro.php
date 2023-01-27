@@ -41,6 +41,8 @@ if ($str_check) {
         } else {
             $streliminar =FALSE;
         }
+
+
         /************************SECCION DE LOS BOTONES*****************************************************************************************/
         $strnuevo = ($__SESSION->getValueSession('alta')) ? TRUE : FALSE;
         $streditar = ($__SESSION->getValueSession('actualiza')) ? TRUE : FALSE;
@@ -68,12 +70,15 @@ if ($str_check) {
 
         //SECCION DE LOS NIVELES DE ACCESO
         /******************DESCOMENTAR ESTA SECCION SI NECESITAN LOS ARCHIVOS PHP**************************/
-        $niveles_acceso = array('i_peticiones.php');
+
+        $niveles_acceso = array('i_peticiones1registro.php');
         $niveles_acceso_etiqueta = array('VER PETICIONES DEL USUARIO');
 
         $tabla = 'sb_usuario';
         $campos_join  = '';
         $tabla_join = '';
+
+
         /******************SECCIOM DE LOS SEPARADORES*****************************************/
         $separadores = array('SEPARADOR 1', 'SEPARADOR 2', 'SEPARADOR 3');
         /**************************************************************************/
@@ -332,9 +337,10 @@ if ($str_check) {
                 $field[] = array('email', 'CORREO', 'VISTA', 'text', 'NOOBLIGATORIO', 'varchar', '', array(0, 12), '30', '', array(), '', '');
                 $field[] = array('passwd', 'CONTRASEÑA', 'VISTA', 'text', 'OBLIGATORIO', 'varchar', '', array(0, 12), '30', '', array(), '', '');
                 $field[] = array('Rfc', 'RFC', 'VISTA', 'text', 'OBLIGATORIO', 'varchar', '', array(0, 12), '30', '', array(), '', '');
-                $field[] = array('antia', 'ANTIGUEDAD-AÑOS', 'VISTA', 'number', 'NOOBLIGATORIO', 'varchar', '', array(0, 12), '30', 'NA', array(), '', '');
-                $field[] = array('antim', 'ANTIGUEDAD-MESES', 'VISTA', 'number', 'NOOBLIGATORIO', 'varchar', '', array(0, 12), '30', 'NA', array(), '', '');
-                $field[] = array('antid', 'ANTIGUEDAD-DIAS', 'VISTA', 'number', 'NOOBLIGATORIO', 'varchar', '', array(0, 12), '30', 'NA', array(), '', '');
+
+                $field[] = array('antia', 'ANTIGUEDAD-AÑOS', 'VISTA', 'text', 'NOOBLIGATORIO', 'int', '', array(0, 12), '30', '0', array(), '', '');
+                $field[] = array('antim', 'ANTIGUEDAD-MESES', 'VISTA', 'text', 'NOOBLIGATORIO', 'int', '', array(0, 12), '30', '0', array(), '', '');
+                $field[] = array('antid', 'ANTIGUEDAD-DIAS', 'VISTA', 'text', 'NOOBLIGATORIO', 'int', '', array(0, 12), '30', '0', array(), '', '');
 
                 $field[] = array('CveAds', 'ADSCRIPCION', 'VISTA', 'select', 'NOOBLIGATORIO', 'int',  $selecADS, array(0, 12), '30', '', array(), '', '');
                 $field[] = array('FechaIngAds', 'FECHA INGRESO A ADSCRIPCION', 'VISTA', 'date', 'OBLIGATORIO', 'date', '', array(0, 12), '30', '', array(), '', '');
@@ -376,7 +382,7 @@ if ($str_check) {
                 //$field[] = array('cve_estado', 'cve_estado', 'VISTA', 'select', 'OBLIGATORIO', 'int',$vector,array(0, 12),'30','','');
                 /*************************************************************************************************/
                 $field[] = array('cve_usuario', 'cve_usuario', 'HIDDEN', 'number', 'NOOBLIGATORIO', 'int', '', array(0, 12), '30', '', array(), '', '');
-                $field[] = array('ClaveServidor', 'CLAVE SERVIDOR PUBLICO', 'VISTA', 'text', 'OBLIGATORIO', 'varchar', '', array(0, 12), '300', '', array(), '', '');
+                $field[] = array('ClaveServidor', 'CLAVE SERVIDOR PUBLICOes', 'VISTA', 'text', 'OBLIGATORIO', 'varchar', '', array(0, 12), '300', '', array(array("readonly","readonly")), '', '');
                 $field[] = array('nom_usuario', 'NOMBRE USUARIO', 'VISTA', 'text', 'OBLIGATORIO', 'varchar', '', array(0, 12), '30', '', array(), '', '');
 
                 $field[] = array('cve_perfil', 'ROL', 'VISTA', 'select', 'NOOBLIGATORIO', 'int', $selecDesc, array(0, 12), '30', '', array(), '', '');
@@ -387,7 +393,11 @@ if ($str_check) {
                 $field[] = array('email', 'CORREO', 'VISTA', 'text', 'OBLIGATORIO', 'varchar', '', array(0, 12), '30', '', array(), '', '');
                 $field[] = array('passwd', 'CONTRASEÑA', 'VISTA', 'password', 'OBLIGATORIO', 'varchar', '', array(0, 12), '30', '', array(), '', '');
                 $field[] = array('Rfc', 'RFC', 'VISTA', 'text', 'OBLIGATORIO', 'varchar', '', array(0, 12), '30', '', array(), '', '');
-                $field[] = array('antia', 'ANTIGUEDAD ', 'vista', 'number', 'NOOBLIGATORIO', 'varchar', '', array(0, 12), '30', '', array(), '', '');
+
+                $field[] = array('antia', 'ANTIGUEDAD-AÑOS', 'VISTA', 'text', 'NOOBLIGATORIO', 'int', '', array(0, 12), '30', '0', array(), '', '');
+                $field[] = array('antim', 'ANTIGUEDAD-MESES', 'VISTA', 'text', 'NOOBLIGATORIO', 'int', '', array(0, 12), '30', '0', array(), '', '');
+                $field[] = array('antid', 'ANTIGUEDAD-DIAS', 'VISTA', 'text', 'NOOBLIGATORIO', 'int', '', array(0, 12), '30', '0', array(), '', '');
+
                 $field[] = array('CveAds', 'ADSCRIPCION', 'VISTA', 'select', 'OBLIGATORIO', 'int',  $selecADS, array(0, 12), '30', '', array(), '', '');
                 $field[] = array('FechaIngAds', 'FECHA INGRESO A ADSCRIPCION', 'VISTA', 'date', 'OBLIGATORIO', 'date', '', array(0, 12), '30', '', array(), '', '');
 
