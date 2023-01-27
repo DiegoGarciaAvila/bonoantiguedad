@@ -241,9 +241,13 @@ $campos = array();
 
                         case "password":
                             $contenido .= ' 
-                                                                        <label for="' . $val[0] . '" ' . $hidden . '><b>' . $val[1] . '</b>' . $leyenda_obligatoria . '<small style="color:#c4c4c4;">' . $val[11] . '</small></label> 
-                                                                        <input multiple type="password" class="form-control" id="' . $val[0] . '" ' . $DATO_PREDEFINIDO  . $coleccion_atributos .  $required . ' value="' . $vector_actualizacion[$val[0]]  . '" name="' . $val[1] . '">                            
-                                                                                ';
+                             <label for="' . $val[0] . '" ' . $hidden . '><b>' . $val[1] . '</b>' . $leyenda_obligatoria . '<small style="color:#c4c4c4;">' . $val[11] . '</small></label>                                       
+                            <div class="input-group">
+                                <input multiple type="password" class="form-control" id="' . $val[0] . '" ' . $DATO_PREDEFINIDO  . $coleccion_atributos .  $required . ' value="' . base64_decode($vector_actualizacion[$val[0]] ) . '" name="' . $val[1] . '">                            
+                                     <div class="input-group-append">
+                                    <button id="show_password2" class="btn btn-primary" type="button"onclick="showPassword(\'' . $val[0] . '\')"> <span class="fa fa-eye-slash icon"></span> </button>
+                                </div>
+                            </div>';
                             break;
 
                         case "multiselect":
@@ -278,6 +282,19 @@ $campos = array();
                 }
                 ?>
                 <!-- en treoria funciona con los requerimientos de la libreria de la fucnion anterior       -->
+
+                <script>
+                    function showPassword(id) {
+
+                        //alert(id);
+                        var x = document.getElementById(id);
+                        if (x.type === "password") {
+                            x.type = "text";
+                        } else {
+                            x.type = "password";
+                        }
+                    }
+                </script>
                 <script>
                     $(document).ready(function() {
 

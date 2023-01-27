@@ -70,8 +70,10 @@ $banderaPrincipal = false;
 if ($estadogrupo == 2) {
     $CveEstatus=4;
     if ($antiguedadAnios >= 30 || ($antiguedadAnios >= 29 && $antiguedadMeses >= 6 && $antiguedadDias >= 1)) {
+       // $CveEstatus=1;
         $banderaPrincipal=true;
     } else {
+        $CveEstatus=2;
         ?>
         <div class="ventana" id="venta">
             <h2>No cumple con la antiguedad necesaria</h2>
