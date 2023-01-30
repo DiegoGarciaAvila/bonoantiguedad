@@ -40,11 +40,11 @@ global $CFG_TIPO;
 // $CFG_DBASE = array("postgresplantilla", "pnomina");
 
 
-$CFG_HOST = array("127.0.0.1");
-$CFG_USER = array("root");
-$CFG_DBPWD = array("");
-$CFG_DBASE = array("db30anios");
-$CFG_TIPO = array("mysql");
+$CFG_HOST = array("127.0.0.1","10.10.48.33");
+$CFG_USER = array("root","dgp_AbrilFlo");
+$CFG_DBPWD = array("",'C4$t#21');
+$CFG_DBASE = array("db30anios","pnomina");
+$CFG_TIPO = array("mysql","sqlserver");
 /*
   -----------------------------------------------------------------
   DEFINICION DE LAS VARIABLES
