@@ -182,14 +182,31 @@ include_once('./librerias/PDOConsultas.php');
             $ISSEMYMserver=$selectserver[0]['ISSEMYM'];
             $NIVELRserver=$selectserver[0]['NIVELR'];
 
+            $CveADServer=0;
+            //1.- Docente
+            //2.- Administrativo
+            if (strtoupper($ADSCserver[0]) == 'A') {
+                $CveADServer=1;
+            } else {
+                $CveADServer=2;
+            }
+
             $anioserver=$selectserver[0]['anio'];
             $messerver=$selectserver[0]['mes'];
             $diaserver=$selectserver[0]['dia'];
+            $CveZEServer=$selectserver[0]['CCT'];
+
+
+
+
 
             //--Busqueda local--//
 
             $consulta = new PDOConsultas();
             $consulta->connect($CFG_HOST[0], $CFG_USER[0], $CFG_DBPWD[0], $CFG_DBASE[0], $CFG_TIPO[0]);
+
+            $select = $consulta->executeQuery("SELECT * FROM cat_zonaescolar WHERE ZEClave = '$CveZEServer'");
+            $cvezed= $select[0]['ZECveZE'];
 
             $select = $consulta->executeQuery("SELECT * FROM cat_adscripcion WHERE AClave = '$ADSCserver'");
             $cveads= $select[0]['ACveA'];
@@ -204,8 +221,9 @@ include_once('./librerias/PDOConsultas.php');
             $consulta->connect($CFG_HOST[0], $CFG_USER[0], $CFG_DBPWD[0], $CFG_DBASE[0], $CFG_TIPO[0]);
 
 
+
             //--Insertar datos--//
-            $select = $consulta->executeQuery("INSERT INTO sb_usuario (ClaveServidor, nom_usuario,ApePat,ApeMat, telcd ,email,passwd,Rfc,des_usuario,cve_estatus,cve_perfil,cve_usergroup,CveAds,FechaIngAds,CvePF,Issemmym,CveM,CveE,antia,antim,antid,NivelRango,FecRegSis)
+            $select = $consulta->executeQuery("INSERT INTO sb_usuario (ClaveServidor, nom_usuario,ApePat,ApeMat, telcd ,email,passwd,Rfc,des_usuario,cve_estatus,cve_perfil,cve_usergroup,CveAds,FechaIngAds,CvePF,CveAD,CveZE,Issemmym,CveM,CveE,antia,antim,antid,NivelRango,FecRegSis)
             VALUES ( 
                 '$claveservidorpublico ',
                 '$A_NOMBREserver' , 
@@ -222,6 +240,8 @@ include_once('./librerias/PDOConsultas.php');
                 $cveads ,
                 '$F_ANTIGUEDADserver',    
                 $cvep , 
+                $CveADServer , 
+                $cvezed , 
                 '$ISSEMYMserver',
                 1,
                 $anioserver,

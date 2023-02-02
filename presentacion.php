@@ -42,6 +42,14 @@ include_once('./librerias/PDOConsultas.php');
         0 0 0 2px rgb(254, 254, 254),
         0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
     }
+
+    .imgventana {
+        width: 30%;
+        height: 30%;
+        margin-bottom: 30px;
+
+    }
+
 </style>
 <?php
 
@@ -77,7 +85,15 @@ if ($estadogrupo == 2) {
         $CveEstatus=2;
         ?>
         <div class="ventana" id="venta">
+            <img src="imagenes_sistema/escudo_estado_mexico.png" alt="logo-estado" class="imgventana">
+
+            </br>
             <h2>No cumple con la antiguedad necesaria</h2>
+            <h5>Para dudas y aclaraciones contactar a :</h5>
+            <h5>correo@edomex.gob.mx</h5>
+            <h5>722-000-0000</h5>
+
+
         </div>
         <?php
     }
@@ -91,16 +107,18 @@ else {
 <?php
 
 
-
-
-
 if ($banderaPrincipal){
     if ($personaPerfil == 4){
         switch ($datosPersona[0]['CveE']) {
         case 1:
             ?>
             <div class="ventana" id="venta">
+                <img src="imagenes_sistema/escudo_estado_mexico.png" alt="logo-estado" class="imgventana">
+
+                </br>
+
                 <h2>Su solicitud para recibir la recompensa ha sido aprobada</h2>
+
             </div>
             <?php
             break;
@@ -108,7 +126,14 @@ if ($banderaPrincipal){
         case 2:
             ?>
             <div class="ventana" id="venta">
+                <img src="imagenes_sistema/escudo_estado_mexico.png" alt="logo-estado" class="imgventana">
+
+                </br>
                 <h2>Su solicitud para recibir la recompensa ha sido rechazada</h2>
+                <h5>Para dudas y aclaraciones contactar a :</h5>
+                <h5>correo@edomex.gob.mx</h5>
+                <h5>722-000-0000</h5>
+
             </div>
             <?php
             break;
@@ -116,7 +141,14 @@ if ($banderaPrincipal){
         case 3:
             ?>
             <div class="ventana" id="venta">
+                <img src="imagenes_sistema/escudo_estado_mexico.png" alt="logo-estado" class="imgventana">
+
+                </br>
                 <h2>Ya le han dado la recompensa por permanencia en el servicio, ya no puede realizar otra paticion</h2>
+                <h5>Para dudas y aclaraciones contactar a :</h5>
+                <h5>correo@edomex.gob.mx</h5>
+                <h5>722-000-0000</h5>
+
             </div>
             <?php
             break;
@@ -262,6 +294,7 @@ if ($banderaPrincipal){
                         </select>
                     </div>
 
+
                     <div class="col-6 form-group">
                         <label class="form-label" for="CveCDIN">CIUDAD DOMICILIO</label>
                         <select class="form-control" name="CveCDIN" id="CveCDIN" required>
@@ -286,6 +319,10 @@ if ($banderaPrincipal){
                             ?>
                         </select>
                     </div>
+
+
+
+
                     <div class="col-6 ">
                         <label class="form-label" for="TelCDIN">TELEFONO DOMICILIO</label>
                         <input type="number" id="TelCDIN" name="TelCDIN" class="form-control" value="<?= $TelCD ?>"

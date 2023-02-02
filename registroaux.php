@@ -10,8 +10,14 @@ include_once('./librerias/PDOConsultas.php');
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RegistroGEM</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="sweetalert2.all.min.js"></script>
+    <script src="sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="sweetalert2.min.css">
     <?php include_once 'cabecera_sistema/cabecera_login.php'
     ?>
 </head>
@@ -43,118 +49,139 @@ include_once('./librerias/PDOConsultas.php');
         left: 15%;
         top: 10%;
 
-        box-shadow:
-            inset 0 -3em 3em rgba(0, 0, 0, 0.0),
-            0 0 0 2px rgb(254, 254, 254),
-            0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+        box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.0),
+        0 0 0 2px rgb(254, 254, 254),
+        0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
     }
 </style>
-    <?php
-    $consulta2 = new PDOConsultas();
-    $consulta2->connect($CFG_HOST[0], $CFG_USER[0], $CFG_DBPWD[0], $CFG_DBASE[0]);
+<?php
+$consulta2 = new PDOConsultas();
+$consulta2->connect($CFG_HOST[0], $CFG_USER[0], $CFG_DBPWD[0], $CFG_DBASE[0]);
 
-    $listaAds2 = $consulta2->executeQuery("SELECT * FROM cat_adscripcion");
-    $listaPF2 = $consulta2->executeQuery("SELECT * FROM cat_puesto");
-    $listaAJ2 = $consulta2->executeQuery("SELECT * FROM cat_activojubilado");
-    $listaAD2 = $consulta2->executeQuery("SELECT * FROM cat_admindocente");
-    $listaZE2 = $consulta2->executeQuery("SELECT * FROM cat_zonaescolar");
-    $listaCD2 = $consulta2->executeQuery("SELECT * FROM cat_ciudaddom");
-    $listaCT2 = $consulta2->executeQuery("SELECT * FROM cat_ciudadtra");
+$listaAds2 = $consulta2->executeQuery("SELECT * FROM cat_adscripcion");
+$listaPF2 = $consulta2->executeQuery("SELECT * FROM cat_puesto");
+$listaAJ2 = $consulta2->executeQuery("SELECT * FROM cat_activojubilado");
+$listaAD2 = $consulta2->executeQuery("SELECT * FROM cat_admindocente");
 
-    $listaE2 = $consulta2->executeQuery("SELECT * FROM estper");
-    $listaUA2 = $consulta2->executeQuery("SELECT * FROM cat_unidadejecutora");
+$listaEst = $consulta2->executeQuery("SELECT * FROM cat_estado");
+$listaCD2 = $consulta2->executeQuery("SELECT * FROM cat_ciudaddom");
 
 
-    ?>
-<body class="vertical-layout vertical-menu-modern blank-page navbar-floating footer-static " data-open="click" data-menu="vertical-menu-modern" data-col="blank-page">
-    <div class="app-content content ">
-        <div class="content-wrapper">
-            <div class="content-body ">
-                <div id="divform2" class="divform">
-                    <h1 class="card-title fw-bold mb-1" style="text-align:center;"><b><a href="login.php"><?= $NOMBRE_CABECERA ?></a></b></h1>
-                    <div class="content-header row">&nbsp;</div>
-                    <div class="content-header row">&nbsp;</div>
-                    <div class="content-header row"><img src="./imagenes_sistema/linea.png" width="15%"></div>
-                    <div class="content-header row">&nbsp;</div>
-                    <div class="content-header row">&nbsp;</div>
-                    <div class="content-header row">&nbsp;</div>
-                    <h5 class="card-title fw-bold mb-1" style="text-align:center;"><b><?= $NOMBRE_SUBCABECERA ?></b></h5>
+$listaCT2 = $consulta2->executeQuery("SELECT * FROM cat_ciudadtra");
 
-                    <form method="POST" id="fomrgem2" class="align-items-center">
 
-                        <div class="col-12 ">
+$listaE2 = $consulta2->executeQuery("SELECT * FROM estper");
+$listaUA2 = $consulta2->executeQuery("SELECT * FROM cat_unidadejecutora");
+$listaZE2 = $consulta2->executeQuery("SELECT * FROM cat_zonaescolar");
+
+
+?>
+<body class="vertical-layout vertical-menu-modern blank-page navbar-floating footer-static " data-open="click"
+      data-menu="vertical-menu-modern" data-col="blank-page">
+<div class="app-content content ">
+    <div class="content-wrapper">
+        <div class="content-body ">
+            <div id="divform2" class="divform">
+                <h1 class="card-title fw-bold mb-1" style="text-align:center;"><b><a
+                                href="login.php"><?= $NOMBRE_CABECERA ?></a></b></h1>
+                <div class="content-header row">&nbsp;</div>
+                <div class="content-header row">&nbsp;</div>
+                <div class="content-header row"><img src="./imagenes_sistema/linea.png" width="15%"></div>
+                <div class="content-header row">&nbsp;</div>
+                <div class="content-header row">&nbsp;</div>
+                <h5 class="card-title fw-bold mb-1" style="text-align:center;"><b><?= $NOMBRE_SUBCABECERA ?></b></h5>
+
+                <form id="fomrgem2" class="align-items-center" method="post" >
+                    <div class="row">
+
+                        <div class="col-6 ">
                             <label class="form-label" for="NombreUsuario3">NOMBRE</label>
-                            <input required type="text" id="NombreUsuario3" name="NombreUsuario3" class="form-control" placeholder="NOMBRE" />
+                            <input required type="text" id="NombreUsuario3" name="NombreUsuario3" class="form-control"
+                                   value="<?php echo $_POST["NombreUsuario3"]; ?>" placeholder="NOMBRE"/>
                         </div>
 
-                        <div class="col-12 ">
+                        <div class="col-6">
                             <label class="form-label" for="ApellidoPaterno3">APELLIDO PATERNO</label>
-                            <input required type="text" id="ApellidoPaterno3" name="ApellidoPaterno3" class="form-control" placeholder="APELLIDO PATERNO" />
+                            <input required type="text" id="ApellidoPaterno3" name="ApellidoPaterno3"
+                                   class="form-control" value="<?php echo $_POST["ApellidoPaterno3"]; ?>" placeholder="APELLIDO PATERNO"/>
                         </div>
 
-                        <div class="col-12 ">
+                        <div class="col-6 ">
                             <label class="form-label" for="ApellidoMaterno3">APELLIDO MATERNO</label>
-                            <input required type="text" id="ApellidoMaterno3" name="ApellidoMaterno3" class="form-control"  placeholder="APELLIDO MATERNO" />
+                            <input required type="text" id="ApellidoMaterno3" name="ApellidoMaterno3"
+                                   class="form-control" value="<?php echo $_POST["ApellidoMaterno3"]; ?>" placeholder="APELLIDO MATERNO"/>
                         </div>
-                        <div class="col-12 ">
+
+                        <div class="col-6 ">
                             <label class="form-label" for="Rfc3">RFC</label>
-                            <input required type="text" id="Rfc3" name="Rfc3" class="form-control" placeholder="RFC" />
+                            <input required type="text" id="Rfc3" name="Rfc3" class="form-control" value="<?php echo $_POST["Rfc3"]; ?>" placeholder="RFC"/>
                         </div>
-                        <div class="col-12 ">
+
+                        <div class="col-4 ">
                             <label class="form-label" for="Correo3">CORREO</label>
-                            <input required type="email" id="Correo3" name="Correo3" class="form-control" placeholder="CORREO" pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}" />
+                            <input required type="email" id="Correo3" name="Correo3" class="form-control"
+                                   value="<?php echo $_POST["Correo3"]; ?>" placeholder="CORREO"
+                                   pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}"/>
                         </div>
-                        <div class="col-12 ">
+
+                        <div class="col-4 ">
                             <label class="form-label" for="PASS3">CONTRASEÑA</label>
                             <div class="input-group">
-                                <input required type="password" id="PASS3" name="PASS3" class="form-control" placeholder="CONTRASEÑA" />
+                                <input required type="password" id="PASS3" name="PASS3" class="form-control"
+                                       placeholder="CONTRASEÑA"/>
                                 <div class="input-group-append">
-                                    <button id="show_password" class="btn btn-primary" type="button" onclick="mostrarPassword()"> <span class="fa fa-eye-slash icon"></span> </button>
+                                    <button id="show_password" class="btn btn-primary" type="button"
+                                            onclick="mostrarPassword()"><span class="fa fa-eye-slash icon"></span>
+                                    </button>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="col-12 ">
+                        <div class="col-4 ">
                             <label class="form-label" for="PASSCON3">CONFIRMAR CONTRASEÑA</label>
-                           <div class="input-group">
-                               <input required type="password" id="PASSCON3" name="PASSCON3" class="form-control" placeholder="CONFIRMAR CONTRASEÑA" />
-                               <div class="input-group-append">
-                                   <button id="show_password2" class="btn btn-primary" type="button" onclick="mostrarPassword2()"> <span class="fa fa-eye-slash icon"></span> </button>
-                               </div>
-                           </div>
+                            <div class="input-group">
+                                <input required type="password" id="PASSCON3" name="PASSCON3" class="form-control"
+                                        placeholder="CONFIRMAR CONTRASEÑA"/>
+                                <div class="input-group-append">
+                                    <button id="show_password2" class="btn btn-primary" type="button"
+                                            onclick="mostrarPassword2()"><span class="fa fa-eye-slash icon"></span>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
 
-                        <div class="col-12 form-group">
+                        <div class="col-6 form-group">
                             <label class="form-label" for="CveAds3">ADSCRIPCION</label>
                             <select class="form-control" name="CveAds3" id="CveAds3" required>
 
                                 <option value="">--SELECCION UNA OPCION--</option>
                                 <?php
-                                $la=0;
+                                $la = 0;
 
                                 foreach ($listaAds2 as $keyla) {
                                     $la++;
-                                    echo ("<option  value= \"" .  $la . "\" > " . $keyla['ADescripcion'] . "</option> ");
+                                    echo("<option  value= \"" . $la . "\" > " . $keyla['AClave'] ." - ". $keyla['ADescripcion']  . "</option> ");
 
                                 }
                                 ?>
                             </select>
                         </div>
 
-                        <div class="col-12 ">
+                        <div class="col-6 ">
                             <label class="form-label" for="FechaIngAds3">FECHA DE INGRESO A DEPENDENCIA</label>
-                            <input required type="date" id="FechaIngAds3" name="FechaIngAds3" class="form-control" placeholder= "FECHA DE INGRESO A ADCRIPCION" />
+                            <input required type="date" id="FechaIngAds3" name="FechaIngAds3" class="form-control"
+                                   value="<?php echo $_POST["FechaIngAds3"]; ?>" placeholder="FECHA DE INGRESO A ADCRIPCION"/>
                         </div>
 
-                        <div class="col-12 form-group">
+                        <div class="col-6 form-group">
                             <label class="form-label" for="CvePF3">PUESTO FUNCIONAL</label>
                             <select class="form-control" name="CvePF3" id="CvePF3" required>
                                 <option value="">--SELECCION UNA OPCION--</option>
                                 <?php
-                                $pf=0;
+                                $pf = 0;
                                 foreach ($listaPF2 as $keypf) {
                                     $pf++;
-                                    echo ("<option  value= \"" . $pf . "\" > " . $keypf['PDescripcion'] . "</option> ");
+                                    echo("<option  value= \"" . $pf . "\" > " . $keypf['PClave'] . " - ".$keypf['PDescripcion']  ."</option> ");
 
 
                                 }
@@ -162,96 +189,116 @@ include_once('./librerias/PDOConsultas.php');
                             </select>
                         </div>
 
-                        <div class="col-12 form-group">
+                        <div class="col-6 form-group">
                             <label class="form-label" for="CveAJ3">ACTIVO/JUBILADO</label>
                             <select class="form-control" name="CveAJ3" id="CveAJ3" required>
                                 <option value="">--SELECCION UNA OPCION--</option>
                                 <?php
-                                $aj=0;
-                                foreach ( $listaAJ2 as $keyAJ) {
+                                $aj = 0;
+                                foreach ($listaAJ2 as $keyAJ) {
                                     $aj++;
-                                    echo ("<option  value= \"" . $aj . "\" > " . $keyAJ['AJDescripcion'] . "</option> ");
+                                    echo("<option  value= \"" . $aj . "\" > " . $keyAJ['AJDescripcion'] . "</option> ");
 
                                 }
                                 ?>
                             </select>
                         </div>
 
-                        <div class="col-12 form-group">
+                        <div class="col-6 form-group">
                             <label class="form-label" for="CveAD3">ADMINISTRATIVO/DOCENTE</label>
                             <select class="form-control" name="CveAD3" id="CveAD3" required>
                                 <option value="">--SELECCION UNA OPCION--</option>
                                 <?php
-                                $ad=0;
-                                foreach ( $listaAD2 as $keyAD) {
+                                $ad = 0;
+                                foreach ($listaAD2 as $keyAD) {
                                     $ad++;
-                                    echo ("<option  value= \"" . $ad . "\" > " . $keyAD['ADDescripcion'] . "</option> ");
+                                    echo("<option  value= \"" . $ad . "\" > " . $keyAD['ADDescripcion'] . "</option> ");
 
                                 }
                                 ?>
                             </select>
                         </div>
 
-                        <div class="col-12 form-group">
+                        <div class="col-6 form-group">
                             <label class="form-label" for="CveZE3">ZONA ESCOLAR</label>
                             <select class="form-control" name="CveZE3" id="CveZE3">
                                 <option value="">--SELECCION UNA OPCION--</option>
                                 <?php
-                                $ze=0;
-                                foreach ( $listaZE2 as $keyZE) {
+                                $ze = 0;
+                                foreach ($listaZE2 as $keyZE) {
                                     $ze++;
-                                    echo ("<option  value= \"" . $ze . "\" > " . $keyZE['ZEDescripcion'] . "</option> ");
+                                    echo("<option  value= \"" . $ze . "\" > " . $keyZE['ZEClave'] . " - ".$keyZE['ZEDescripcion'] . "</option> ");
 
                                 }
                                 ?>
                             </select>
                         </div>
 
-                        <div class="col-12 form-group">
-                            <label class="form-label" for="CveCD3">CIUDAD DOMICILIO</label>
-                            <select class="form-control" name="CveCD3" id="CveCD3" required>
-
+                        <div class="col-4 form-group">
+                            <label class="form-label" for="CveEst3">ESTADO DE DOMICILIO</label>
+                            <select class="form-control" name="CveEst3" id="CveEst3" required>
                                 <option value="">--SELECCION UNA OPCION--</option>
                                 <?php
-                                $j=0;
-                                foreach ($listaCD2 as $keys) {
-                                    $j++;
-                                    echo ("<option  value= \"" . $j . "\" > " . $keys['CDDescripcion'] . "</option> ");
-
+                                $est = 0;
+                                foreach ($listaEst as $keyest) {
+                                    $est++;
+                                    echo("<option  value= \"" . $est . "\" > " . $keyest['des_estado'] . "</option> ");
                                 }
                                 ?>
                             </select>
                         </div>
-                        <div class="col-12 ">
-                            <label class="form-label" for="TelCD3">TELEFONO PERSONAL</label>
-                            <input required type="number" id="TelCD3" name="TelCD3" class="form-control" placeholder="TELEFONO DE DOMICILIO" />
+
+                        <div class="col-4 form-group">
+                            <label class="form-label" for="CveCD3">CIUDAD DOMICILIO</label>
+                            <select class="form-control" name="CveCD3" id="CveCD3" required>
+                                <option value="">--SELECCION UNA OPCION--</option>
+
+                            </select>
                         </div>
-                        <div class="col-12 form-group">
+
+                        <div class="col-4 ">
+                            <label class="form-label" for="TelCD3">TELEFONO PERSONAL</label>
+                            <input required type="number" id="TelCD3" name="TelCD3" class="form-control"
+                                   value="<?php echo $_POST["TelCD3"]; ?>" placeholder="TELEFONO DE DOMICILIO"/>
+                        </div>
+
+                        <div class="col-4 form-group">
+                            <label class="form-label" for="CveEst32">ESTADO DE TRABAJO</label>
+                            <select class="form-control" name="CveEst32" id="CveEst32" required>
+                                <option value="">--SELECCION UNA OPCION--</option>
+                                <?php
+                                $est2 = 0;
+                                foreach ($listaEst as $keyest2) {
+                                    $est2++;
+                                    echo("<option  value= \"" . $est2 . "\" > " . $keyest2['des_estado'] . "</option> ");
+                                }
+                                ?>
+                            </select>
+                        </div>
+
+                        <div class="col-4 form-group">
                             <label class="form-label" for="CveCT3">CIUDAD TRABAJO</label>
                             <select class="form-control" name="CveCT3" id="CveCT3" required>
 
                                 <option value="">--SELECCION UNA OPCION--</option>
-                                <?php
-                                $i=0;
-                                foreach ($listaCT2 as $key) {
-                                    $i++;
-                                    echo ("<option  value= \"" . $i . "\" > " . $key['CTDescripcion'] . "</option> ");
 
-                                }
-                                ?>
                             </select>
                         </div>
-                        <div class="col-12 ">
+
+                        <div class="col-4 ">
                             <label class="form-label" for="TelCT3">TELEFONO TRABAJO</label>
-                            <input required type="number" id="TelCT3" name="TelCT3" class="form-control" placeholder="TELEFONO DE TRABAJP" />
+                            <input required type="number" id="TelCT3" name="TelCT3" class="form-control"
+                                   value="<?php echo $_POST["TelCT3"]; ?>" placeholder="TELEFONO DE TRABAJP"/>
                         </div>
-                        <div class="col-12 ">
+
+                        <div class="col-4 ">
                             <label class="form-label" for="Issemmym3">ISSEMMYM</label>
-                            <input required type="number" id="Issemmym3" name="Issemmym3" class="form-control"  placeholder="ISSEMMYM" />
+                            <input required type="number" id="Issemmym3" name="Issemmym3" class="form-control"
+                                   value="<?php echo $_POST["Issemmym3"]; ?>" placeholder="ISSEMMYM"/>
                         </div>
 
 
-                        <div class="col-12 form-group">
+                        <div class="col-4 form-group">
                             <label class="form-label" for="Sindicalizado3">SINDICALIZADO</label>
                             <select class="form-control" name="Sindicalizado3" id="Sindicalizado3" required>
                                 <option value="">--SELECCION UNA OPCION--</option>
@@ -261,210 +308,212 @@ include_once('./librerias/PDOConsultas.php');
                             </select>
                         </div>
 
-                        <div class="col-12 ">
+                        <div class="col-4 ">
                             <label class="form-label" for="NivelRango3">NIVEL Y RANGO</label>
-                            <input required type="text" id="NivelRango3" name="NivelRango3" class="form-control" placeholder="" />
+                            <input required type="text" id="NivelRango3" name="NivelRango3" class="form-control"
+                                   value="<?php $_POST["NivelRango3"]; ?>" placeholder=""/>
                         </div>
 
-                        <button type="submit" class="btn btn-primary" name="botonregistroaux2">Registrarse</button>
-                    </form>
-                </div>
+                    </div>
+                    </br>
+
+                    <button id="botonregistroaux2"  class="btn btn-primary" name="botonregistroaux2" >Registrarse</button>
+                </form>
             </div>
         </div>
     </div>
+</div>
 
-    <script type="text/javascript">
-        function mostrarPassword2(){
-            var cambio = document.getElementById("PASSCON3");
-            if(cambio.type == "password"){
-                cambio.type = "text";
-                $('.icon').removeClass('fa fa-eye-slash').addClass('fa fa-eye');
-            }else{
-                cambio.type = "password";
-                $('.icon').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
-            }
-        }
-
-        $(document).ready(function () {
-            //CheckBox mostrar contraseña
-            $('#ShowPassword2').click(function () {
-                $('#Password').attr('type', $(this).is(':checked') ? 'text' : 'password');
+<script>
+    document.getElementById("CveEst3").addEventListener("change", function () {
+        var idPadre = this.value;
+        var hijo = document.getElementById("CveCD3");
+        hijo.innerHTML = "<option value=''>Seleccione una opción</option>";
+        var opcionesHijo = <?php echo json_encode($listaCD2); ?>;
+        var opciones = opcionesHijo.filter(opcion => opcion['cve_estado'] == idPadre);
+        if (opciones.length) {
+            opciones.forEach(opcion => {
+                hijo.innerHTML += "<option value='" + opcion['CDCveCD'] + "'>" + opcion['CDDescripcion'] + "</option>";
             });
-        });
-    </script>
-    <script type="text/javascript">
-        function mostrarPassword(){
-            var cambio = document.getElementById("PASS3");
-            if(cambio.type == "password"){
-                cambio.type = "text";
-                $('.icon').removeClass('fa fa-eye-slash').addClass('fa fa-eye');
-            }else{
-                cambio.type = "password";
-                $('.icon').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
-            }
-        }
-
-        $(document).ready(function () {
-            //CheckBox mostrar contraseña
-            $('#ShowPassword').click(function () {
-                $('#Password').attr('type', $(this).is(':checked') ? 'text' : 'password');
-            });
-        });
-    </script>
-    <script>
-    var input=  document.getElementById('TelCT3');
-    input.addEventListener('input',function(){
-        if (this.value.length > 10)
-            this.value = this.value.slice(0,10);
-    })
-
-
-    var input=  document.getElementById('TelCD3');
-    input.addEventListener('input',function(){
-        if (this.value.length > 10)
-            this.value = this.value.slice(0,10);
-    })
-</script>
-    <script>
-        var input=  document.getElementById('Rfc3');
-        input.addEventListener('input',function(){
-            if (this.value.length > 13)
-                this.value = this.value.slice(0,13);
-        })
-
-
-    </script>
-
-    <?php
-    if ($_POST != null) {
-
-        $NombreUsuario3 = $_POST["NombreUsuario3"];
-        $ApellidoPaterno3 = $_POST["ApellidoPaterno3"];
-        $ApellidoMaterno3 = $_POST["ApellidoMaterno3"];
-        $Rfc3 = $_POST["Rfc3"];
-        $Correo3 = $_POST["Correo3"];
-        $PASS3 = $_POST["PASS3"];
-        $PASSCON3 = $_POST["PASSCON3"];
-        $CveAds3 = $_POST["CveAds3"];
-        $FechaIngAds3 = $_POST["FechaIngAds3"];
-        $CvePF3 = $_POST["CvePF3"];
-        $CveAJ3 = $_POST["CveAJ3"];
-        $CveAD3 = $_POST["CveAD3"];
-        $CveZE3 = $_POST["CveZE3"];
-        $CveCD3 = $_POST["CveCD3"];
-        $TelCD3 = $_POST["TelCD3"];
-        $CveCT3 = $_POST["CveCT3"];
-        $TelCT3 = $_POST["TelCT3"];
-        $Issemmym3 = $_POST["Issemmym3"];
-
-        $Sindicalizado3 = $_POST["Sindicalizado3"];
-        $NivelRango3 = $_POST["NivelRango3"];
-
-        $hoy = getdate();
-        $fecha = $hoy['year'] . '-' . $hoy['mon'] . '-' . $hoy['mday'];
-
-        $claveservidor= $Rfc3+substr($NombreUsuario3,1,3);
-
-        if ($PASS3 == $PASSCON3) {
-
-
-            $PASSCON3 = base64_encode($PASSCON3);
-
-            $consulta = new PDOConsultas();
-            $consulta->connect($CFG_HOST[0], $CFG_USER[0], $CFG_DBPWD[0], $CFG_DBASE[0], $CFG_TIPO[0]);
-            $select2 = $consulta->executeQuery("INSERT INTO sb_usuario (ClaveServidor,nom_usuario,ApePat,ApeMat,email,passwd,Rfc,des_usuario,cve_estatus,cve_perfil,cve_usergroup,CveAds,CvePF,CveAJ,CveAD,FechaIngAds,CveZE,CveCD,TelCD,CveCT,TelCT,Issemmym,CveM,CveE,Sindicalizado,NivelRango,FecRegSis)
-            values ($claveservidor,
-                    '$NombreUsuario3',
-                    '$ApellidoPaterno3',
-                    '$ApellidoMaterno3',
-                    '$Correo3',
-                    '$PASSCON3',
-                    '$Rfc3',
-                    'SERVIDOR PUBLICO',
-                    1,
-                    4,
-                    1,
-                    $CveAds3,
-                    $CvePF3,
-                    $CveAJ3,
-                    $CveAD3,
-                    '$FechaIngAds3',
-                    $CveZE3,
-                    $CveCD3,
-                    '$TelCD3',
-                    $CveCT3,
-                    '$TelCT3',
-                    '$Issemmym3',
-                    1,
-                    5,
-                    '$Sindicalizado3',
-                    '$NivelRango3',
-                    '$fecha');");
-
-
-            if ($consulta->lastInsertId != 'null') {
-                if (isset($consulta->error)) {
-                    $array_error = $consulta->error;
-                    $error_cadena = substr($array_error[0], 1, 14);
-                    if ($error_cadena == "QLSTATE[23000]") {
-
-    ?>
-                        <script>
-                            Swal.fire(
-                                "YA EXISTE EL REGISTRO"
-                            )
-                        </script>
-                    <?php
-                    } else {
-                    ?>
-                        <script>
-                            error = <?= $consulta->error; ?>
-
-                            Swal.fire(
-                                error + ""
-                            )
-                        </script>
-                    <?php
-                    }
-                } else {
-                    ?>
-                    <script>
-                        Swal.fire({
-                            title: 'CUENTA CREADA',
-                            confirmButtonText: 'ACEPTAR',
-                        }).then((result) => {
-                            /* Read more about isConfirmed, isDenied below */
-                            if (result.isConfirmed) {
-                                window.location.href = "./login.php";
-
-                            }
-                        })
-                    </script>
-                <?php
-                }
-            } else {
-
-                ?>
-                <script>
-                    error = <?= $consulta->error; ?>
-
-                    Swal.fire(
-                        error + ""
-                    )
-                </script>
-            <?php
-            }
+            //     hijo.style.display = "inline-block";
         } else {
-            ?>
-            <script>
-                Swal.fire(
-                    "Las contraseñas son diferentes"
-                )
-            </script>
-    <?php
+            //    hijo.style.display = "none";
+        }
+    });
+
+    //----------------------------------Segundo
+    document.getElementById("CveEst32").addEventListener("change", function () {
+        var idPadre = this.value;
+        var hijo = document.getElementById("CveCT3");
+        hijo.innerHTML = "<option value=''>Seleccione una opción</option>";
+
+
+        var opcionesHijo = <?php echo json_encode($listaCT2); ?>
+
+        var opciones = opcionesHijo.filter(opcion => opcion['cve_estado'] == idPadre);
+        if (opciones.length) {
+            opciones.forEach(opcion => {
+                hijo.innerHTML += "<option value='" + opcion['CTCveCT'] + "'>" + opcion['CTDescripcion'] + "</option>";
+            });
+            //hijo.style.display = "inline-block";
+        } else {
+            // hijo.style.display = "none";
+        }
+    });
+</script>
+<script type="text/javascript">
+    function mostrarPassword2() {
+        var cambio = document.getElementById("PASSCON3");
+        if (cambio.type == "password") {
+            cambio.type = "text";
+            $('.icon').removeClass('fa fa-eye-slash').addClass('fa fa-eye');
+        } else {
+            cambio.type = "password";
+            $('.icon').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
         }
     }
-    ?>
+
+    $(document).ready(function () {
+        //CheckBox mostrar contraseña
+        $('#ShowPassword2').click(function () {
+            $('#Password').attr('type', $(this).is(':checked') ? 'text' : 'password');
+        });
+    });
+</script>
+<script type="text/javascript">
+    function mostrarPassword() {
+        var cambio = document.getElementById("PASS3");
+        if (cambio.type == "password") {
+            cambio.type = "text";
+            $('.icon').removeClass('fa fa-eye-slash').addClass('fa fa-eye');
+        } else {
+            cambio.type = "password";
+            $('.icon').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
+        }
+    }
+
+    $(document).ready(function () {
+        //CheckBox mostrar contraseña
+        $('#ShowPassword').click(function () {
+            $('#Password').attr('type', $(this).is(':checked') ? 'text' : 'password');
+        });
+    });
+</script>
+<script>
+    var input = document.getElementById('TelCT3');
+    input.addEventListener('input', function () {
+        if (this.value.length > 10)
+            this.value = this.value.slice(0, 10);
+    })
+
+
+    var input = document.getElementById('TelCD3');
+    input.addEventListener('input', function () {
+        if (this.value.length > 10)
+            this.value = this.value.slice(0, 10);
+    })
+</script>
+<script>
+    var input = document.getElementById('Rfc3');
+    input.addEventListener('input', function () {
+        if (this.value.length > 13)
+            this.value = this.value.slice(0, 13);
+    })
+
+
+</script>
+<script>
+    $(document).ready(function() {
+        $("#botonregistroaux2").click(function(e) {
+            e.preventDefault();
+            guardaRegistro();
+        });
+
+        function guardaRegistro() {
+            const formData = new FormData();
+            formData.append("NombreUsuario3", $('#NombreUsuario3').val());
+            formData.append("ApellidoPaterno3", $('#ApellidoPaterno3').val());
+            formData.append("ApellidoMaterno3", $('#ApellidoMaterno3').val());
+            formData.append("Rfc3", $('#Rfc3').val());
+            formData.append("Correo3", $('#Correo3').val());
+            formData.append("PASS3", $('#PASS3').val());
+            formData.append("PASSCON3", $('#PASSCON3').val());
+            formData.append("CveAds3", $('#CveAds3').val());
+            formData.append("FechaIngAds3", $('#FechaIngAds3').val());
+            formData.append("CvePF3", $('#CvePF3').val());
+            formData.append("CveAJ3", $('#CveAJ3').val());
+            formData.append("CveAD3", $('#CveAD3').val());
+            formData.append("CveZE3", $('#CveZE3').val());
+            formData.append("CveCD3", $('#CveCD3').val());
+            formData.append("TelCD3", $('#TelCD3').val());
+            formData.append("CveCT3", $('#CveCT3').val());
+            formData.append("TelCT3", $('#TelCT3').val());
+            formData.append("Issemmym3", $('#Issemmym3').val());
+            formData.append("Sindicalizado3", $('#Sindicalizado3').val());
+            formData.append("NivelRango3", $('#NivelRango3').val());
+            console.log(formData);
+            $.ajax({
+                url: "ajax_sistema/registro_aux.php",
+                type: "post",
+                dataType: "html",
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false
+            }).done(function(res) {
+                if (res == "1") {
+                    Swal.fire({
+                        position: 'top-center',
+                        icon: 'warning',
+                        title: 'YA EXISTE EL REGISTRO',
+                        showConfirmButton: false,
+
+                    });
+                } else if (res == "2") {
+                    Swal.fire({
+                        position: 'top-center',
+                        icon: 'error',
+                        title: 'ERROR EN LA QUERY',
+                        showConfirmButton: false,
+                        timer: 1700
+                    });
+                } else if (res == "3") {
+                    Swal.fire({
+                        position: 'top-center',
+                        icon: 'success',
+                        title: 'CUENTA CREADA',
+                        text: 'Ya puedes ingresar al sistema usando tu RFC',
+                        showConfirmButton: true,
+                    }).then((result) => {
+                        /* Read more about isConfirmed, isDenied below */
+                        if (result.isConfirmed) {
+                            window.location.href = "login.php";
+                        }
+                    }) ;
+                } else if (res == "4") {
+                    Swal.fire({
+                        position: 'top-center',
+                        icon: 'error',
+                        title: 'ERROR EN EL QUERY DOS',
+                        showConfirmButton: false,
+                        timer: 1700
+                    });
+                } else if (res == "5") {
+                    Swal.fire({
+                        position: 'top-center',
+                        icon: 'warning',
+                        title: 'Las contraseñas son diferentes',
+                        showConfirmButton: true,
+                    });
+                }
+            });
+        }
+    });
+    </script>
+
+
+
+
 
 
 </body>
