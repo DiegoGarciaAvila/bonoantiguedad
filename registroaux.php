@@ -451,7 +451,7 @@ $listaZE2 = $consulta2->executeQuery("SELECT * FROM cat_zonaescolar");
             formData.append("Issemmym3", $('#Issemmym3').val());
             formData.append("Sindicalizado3", $('#Sindicalizado3').val());
             formData.append("NivelRango3", $('#NivelRango3').val());
-            console.log(formData);
+
             $.ajax({
                 url: "ajax_sistema/registro_aux.php",
                 type: "post",
