@@ -361,6 +361,9 @@ $listaZE2 = $consulta2->executeQuery("SELECT * FROM cat_zonaescolar");
         }
     });
 </script>
+
+
+
 <script type="text/javascript">
     function mostrarPassword2() {
         var cambio = document.getElementById("PASSCON3");

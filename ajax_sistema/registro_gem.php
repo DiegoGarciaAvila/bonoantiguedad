@@ -123,10 +123,10 @@ if ($password == $passwordconfirmar) {
                 $cvezed , 
                 '$ISSEMYMserver',
                 1,
+                5 ,
                 $anioserver,
                 $messerver,
                 $diaserver,
-                5 ,
                 '$NIVELRserver',
                 '$fecha'
                 );");

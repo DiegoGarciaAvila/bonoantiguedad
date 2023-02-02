@@ -190,7 +190,6 @@ if ($banderaPrincipal){
                                data-msg="Please enter your last name"
                                pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}"/>
                     </div>
-
                     <div class="col-6 ">
                         <label class="form-label" for="CveAdsIN">ADSCRIPCION</label>
                         <select class="form-control" name="CveAdsIN" id="CveAdsIN" required>
@@ -210,8 +209,6 @@ if ($banderaPrincipal){
                             ?>
                         </select>
                     </div>
-
-
                     <div class="col-6 ">
                         <label class="form-label" for="CvePFIN">PUESTO FUNCIONAL</label>
                         <select class="form-control" name="CvePFIN" id="CvePFIN" required>
@@ -231,7 +228,6 @@ if ($banderaPrincipal){
                             ?>
                         </select>
                     </div>
-
                     <div class="col-6 ">
                         <label class="form-label" for="CveAJIN">ACTIVO/JUBILADO</label>
                         <select class="form-control" name="CveAJIN" id="CveAJIN" required>
@@ -251,8 +247,6 @@ if ($banderaPrincipal){
                             ?>
                         </select>
                     </div>
-
-
                     <div class="col-6 ">
                         <label class="form-label" for="CveADIN">ADMINISTRATIVO/DOCENTE</label>
                         <select class="form-control" name="CveADIN" id="CveADIN" required>
@@ -272,8 +266,6 @@ if ($banderaPrincipal){
                             ?>
                         </select>
                     </div>
-
-
                     <div class="col-6 ">
                         <label class="form-label" for="CveZEIN">ZONA ESCOLAR</label>
                         <select class="form-control" name="CveZEIN" id="CveZEIN">
@@ -294,8 +286,32 @@ if ($banderaPrincipal){
                         </select>
                     </div>
 
+                    <div class="col-4 form-group">
+                        <label class="form-label" for="CvEEstIN">ESTADO DOMICILIO</label>
+                        <select class="form-control" name="CvEEstIN" id="CvEEstIN" required>
 
-                    <div class="col-6 form-group">
+                            <option value="">--SELECCION UNA OPCION--</option>
+                            <?php
+
+                            foreach ($cat_estado as $keyed) {
+                                $ed++;
+                                switch ($keyed['cve_estado']) {
+                                    case $numcd:
+                                        echo("<option selected value= \"" . $ed . "\" > " . $keyed['des_estado'] . "</option> ");
+
+                                        break;
+
+                                    default:
+                                        echo("<option  value= \"" . $ed . "\" > " . $keyed['des_estado'] . "</option> ");
+
+                                        break;
+                                }
+                            }
+                            ?>
+                        </select>
+                    </div>
+
+                    <div class="col-4 form-group">
                         <label class="form-label" for="CveCDIN">CIUDAD DOMICILIO</label>
                         <select class="form-control" name="CveCDIN" id="CveCDIN" required>
 
@@ -320,15 +336,38 @@ if ($banderaPrincipal){
                         </select>
                     </div>
 
-
-
-
-                    <div class="col-6 ">
+                    <div class="col-4 ">
                         <label class="form-label" for="TelCDIN">TELEFONO DOMICILIO</label>
                         <input type="number" id="TelCDIN" name="TelCDIN" class="form-control" value="<?= $TelCD ?>"
                                data-msg="Please enter your last name"/>
                     </div>
-                    <div class="col-6 form-group">
+
+                    <div class="col-4 form-group">
+                        <label class="form-label" for="CvEEst2IN">ESTADO TRABAJO</label>
+                        <select class="form-control" name="CvEEst2IN" id="CvEEst2IN" required>
+
+                            <option value="">--SELECCION UNA OPCION--</option>
+                            <?php
+
+                            foreach ($cat_estado as $keyed2) {
+                                $ed2++;
+                                switch ($keyed2['cve_estado']) {
+                                    case $numtd:
+                                        echo("<option selected value= \"" . $ed2 . "\" > " . $keyed2['des_estado'] . "</option> ");
+
+                                        break;
+
+                                    default:
+                                        echo("<option  value= \"" . $ed2 . "\" > " . $keyed2['des_estado'] . "</option> ");
+
+                                        break;
+                                }
+                            }
+                            ?>
+                        </select>
+                    </div>
+
+                    <div class="col-4 form-group">
                         <label class="form-label" for="CveCTIN">CIUDAD TRABAJO</label>
                         <select class="form-control" name="CveCTIN" id="CveCTIN" required>
 
@@ -353,7 +392,7 @@ if ($banderaPrincipal){
                             ?>
                         </select>
                     </div>
-                    <div class="col-6 ">
+                    <div class="col-4 ">
                         <label class="form-label" for="TelCTIN">TELEFONO TRABAJO</label>
                         <input type="number" id="TelCTIN" name="TelCTIN" class="form-control" value="<?= $TelCT ?>"
                                data-msg="Please enter your last name"/>
@@ -363,7 +402,6 @@ if ($banderaPrincipal){
                         <input type="number" id="IssemmymIN" name="IssemmymIN" class="form-control" value="<?= $Issemmym ?>"
                                data-msg="Please enter your last name"/>
                     </div>
-
                     <div class="col-6 ">
                         <label class="form-label" for="CveUAIN">UNIDAD ADMINISTRATIVA</label>
                         <select class="form-control" name="CveUAIN" id="CveUAIN" required>
@@ -383,8 +421,6 @@ if ($banderaPrincipal){
                             ?>
                         </select>
                     </div>
-
-
                     <div class="col-6 ">
                         <label class="form-label" for="SindicalizadoIN">SINDICALIZADO</label>
                         <select class="form-control" name="SindicalizadoIN" id="SindicalizadoIN" required>
@@ -403,81 +439,23 @@ if ($banderaPrincipal){
                             ?>
                         </select>
                     </div>
-
                     <div class="col-6 ">
                         <label class="form-label" for="NivelRangoIN">NIVEL Y RANGO</label>
                         <input type="text" id="NivelRangoIN" name="NivelRangoIN" class="form-control"
                                value="<?= $NivelRango ?>" data-msg="Please enter your last name"/>
                     </div>
-
                     <div class="col-12 text-center mt-2 pt-50">
-                        <button type="submit" class="btn btn-primary me-1" name="submit_btnIN">ACTUALIZAR</button>
+                        <button class="btn btn-primary me-1" id="submit_btnIN" name="submit_btnIN">ACTUALIZAR</button>
                         IN
                     </div>
-
                 </form>
             </div>
 
             <?php
 
-            if (isset($_REQUEST['submit_btnIN'])) {
 
-                $ClaveServidorIN = $_POST["ClaveServidorIN"];
-                $NombreUsuarioIN = $_POST["NombreUsuarioIN"];
-                $ApellidoPaternoIN = $_POST["ApellidoPaternoIN"];
-                $ApellidoMaternoIN = $_POST["ApellidoMaternoIN"];
-                $RfcIN = $_POST["RfcIN"];
-                $CorreoIN = $_POST["CorreoIN"];
-                $CveAdsIN = $_POST["CveAdsIN"];
-                $CvePFIN = $_POST["CvePFIN"];
-                $CveAJIN = $_POST["CveAJIN"];
-                $CveADIN = $_POST["CveADIN"];
-                $CveZEIN = $_POST["CveZEIN"];
-                $CveCDIN = $_POST["CveCDIN"];
-                $TelCDIN = $_POST["TelCDIN"];
-                $CveCTIN = $_POST["CveCTIN"];
-                $TelCTIN = $_POST["TelCTIN"];
-                $IssemmymIN = $_POST["IssemmymIN"];
-                $CveUAIN = $_POST["CveUAIN"];
-                $SindicalizadoIN = $_POST["SindicalizadoIN"];
-                $NivelRangoIN = $_POST["NivelRangoIN"];
-
-                $consulta2 = new PDOConsultas();
-                $consulta2->connect($CFG_HOST[0], $CFG_USER[0], $CFG_DBPWD[0], $CFG_DBASE[0]);
-                $actualisausuario = " UPDATE sb_usuario SET " .
-                    " nom_usuario = '" . $NombreUsuarioIN . "'," .
-                    " ApePat = '" . $ApellidoPaternoIN . "'," .
-                    " ApeMat = '" . $ApellidoMaternoIN . "'," .
-                    " Rfc = '" . $RfcIN . "'," .
-                    " email = '" . $CorreoIN . "'," .
-                    " CveAds = " . $CveAdsIN . "," .
-                    " CvePF = " . $CvePFIN . "," .
-                    " CveAJ = " . $CveAJIN . "," .
-                    " CveAD = " . $CveADIN . "," .
-                    " CveZE = " . $CveZEIN . "," .
-                    " CveCD = " . $CveCDIN . "," .
-                    " TelCD = '" . $TelCDIN . "'," .
-                    " CveCT = " . $CveCTIN . "," .
-                    " TelCT = '" . $TelCTIN . "'," .
-                    " Issemmym = '" . $IssemmymIN . "'," .
-                    " CveUA = " . $CveUAIN . "," .
-                    " Sindicalizado = '" . $SindicalizadoIN . "'," .
-                    " NivelRango = '" . $NivelRangoIN . "'," .
-                    " CveE = ".$CveEstatus." " .
-                    " WHERE cve_usuario = " . $__SESSION->getValueSession('cveusuario') . "";
-                //sleep(10);
-
-                $consulta->executeQuery($actualisausuario);
-                if ($consulta->lastInsertId != 'null') {
-                    echo("<meta http-equiv='refresh' content='1'>");
-                } else {
-                    echo $consulta->error;
-                }
-            }
             ?>
             <?php
-
-
             break;
         default:
         ?>
@@ -704,7 +682,6 @@ if ($banderaPrincipal){
                             //echo("Error con el usuario");
             break;
         }
-
     }
     else{
                         ?>

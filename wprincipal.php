@@ -518,6 +518,7 @@ if ($str_check) {
         $cat_ciudaddom= $consulta2->executeQuery("SELECT * FROM cat_ciudaddom");
         $cat_ciudadtra= $consulta2->executeQuery("SELECT * FROM cat_ciudadtra");
         $cat_unidadejecutora= $consulta2->executeQuery("SELECT * FROM cat_unidadejecutora");
+        $cat_estado=$consulta2->executeQuery("SELECT * FROM cat_estado");
 
         $listaSin = array(
             0 => array('cve_perfil' => "SI", 'des_perfil' => "SI"),
@@ -539,7 +540,7 @@ if ($str_check) {
             d.PDescripcion,m.AJDescripcion, e.ADDescripcion, a.FechaIngAds, 
             f.ZEDescripcion, h.CDDescripcion, a.TelCD, i.CTDescripcion, a.TelCT,
             a.Issemmym,a.FechaIngIss, j.MDescripcion,a.antia,a.antim,a.antid, k.UEDescripcion,
-            l.EPDescripcion, a.Sindicalizado, a.NivelRango
+            l.EPDescripcion, a.Sindicalizado, a.NivelRango, h.cve_estado as numcd , i.cve_estado as numtd
             FROM sb_usuario a
             LEFT JOIN sb_perfil b ON (a.cve_perfil=b.cve_perfil)
             LEFT JOIN cat_adscripcion c ON (a.CveAds = c.ACveA)
@@ -587,6 +588,9 @@ if ($str_check) {
         $EPDescripcion = $select[0]['EPDescripcion'];
         $Sindicalizado = $select[0]['Sindicalizado'];
         $NivelRango = $select[0]['NivelRango'];
+        $numcd = $select[0]['numcd'];
+        $numtd = $select[0]['numtd'];
+
 
         $Antiguedad = $Antia . " años " ;
         if( $Antim === '1'){
@@ -881,40 +885,134 @@ if ($str_check) {
         </footer>
         <button class="btn btn-primary btn-icon scroll-top" type="button"><i data-feather="arrow-up"></i></button>
         <!-- END: Footer-->
+        <script>
+            $(document).ready(function() {
+                $("#submit_btnIN").click(function(e) {
+                    e.preventDefault();
+                    guardaRegistro();
+                });
 
+                function guardaRegistro() {
+                    const formData = new FormData();
+                    formData.append("ClaveServidorIN", $('#ClaveServidorIN').val());
+                    formData.append("NombreUsuarioIN", $('#NombreUsuarioIN').val());
+                    formData.append("ApellidoPaternoIN", $('#ApellidoPaternoIN').val());
+                    formData.append("ApellidoMaternoIN", $('#ApellidoMaternoIN').val());
+                    formData.append("RfcIN", $('#RfcIN').val());
+                    formData.append("CorreoIN", $('#CorreoIN').val());
+                    formData.append("CveAdsIN", $('#CveAdsIN').val());
+                    formData.append("CvePFIN", $('#CvePFIN').val());
+                    formData.append("CveAJIN", $('#CveAJIN').val());
+                    formData.append("CveADIN", $('#CveADIN').val());
+                    formData.append("CveZEIN", $('#CveZEIN').val());
+                    formData.append("CveCDIN", $('#CveCDIN').val());
+                    formData.append("TelCDIN", $('#TelCDIN').val());
+                    formData.append("CveCTIN", $('#CveCTIN').val());
+                    formData.append("TelCTIN", $('#TelCTIN').val());
+                    formData.append("IssemmymIN", $('#IssemmymIN').val());
+                    formData.append("CveUAIN", $('#CveUAIN').val());
+                    formData.append("SindicalizadoIN", $('#SindicalizadoIN').val());
+                    formData.append("NivelRangoIN", $('#NivelRangoIN').val());
+                    formData.append("CveEstatus",<?=$CveEstatus?> );
+                    formData.append("cve_usuario",<?= $__SESSION->getValueSession('cveusuario') ?> );
+
+
+                    $.ajax({
+                        url: "ajax_sistema/actualizar_inicio.php",
+                        type: "post",
+                        dataType: "html",
+                        data: formData,
+                        cache: false,
+                        contentType: false,
+                        processData: false
+                    }).done(function(res) {
+                       if (res == "1") {
+                            Swal.fire({
+                                position: 'top-center',
+                                icon: 'success',
+                                title: 'INFORMACION ACTUALIZADA',
+                                showConfirmButton: true,
+                            }).then((result) => {
+                                /* Read more about isConfirmed, isDenied below */
+                                if (result.isConfirmed) {
+                                    window.location.href = "index.php";
+                                }
+                            }) ;
+                        } else if (res == "2") {
+                            Swal.fire({
+                                position: 'top-center',
+                                icon: 'error',
+                                title: 'ERROR EN EL QUERY DOS',
+                                showConfirmButton: false,
+                                timer: 1700
+                            });
+                        }
+                    });
+                }
+            });
+        </script>
+        <script>
+            document.getElementById("CvEEstIN").addEventListener("change", function () {
+                var idPadre = this.value;
+                var hijo = document.getElementById("CveCDIN");
+                hijo.innerHTML = "<option value=''>Seleccione una opción</option>";
+                var opcionesHijo = <?php echo json_encode($listaCD); ?>;
+                var opciones = opcionesHijo.filter(opcion => opcion['cve_estado'] == idPadre);
+                if (opciones.length) {
+                    opciones.forEach(opcion => {
+                        hijo.innerHTML += "<option value='" + opcion['CDCveCD'] + "'>" + opcion['CDDescripcion'] + "</option>";
+                    });
+                    //     hijo.style.display = "inline-block";
+                } else {
+                    //    hijo.style.display = "none";
+                }
+            });
+
+            //----------------------------------Segundo
+            document.getElementById("CvEEst2IN").addEventListener("change", function () {
+                var idPadre = this.value;
+                var hijo = document.getElementById("CveCTIN");
+                hijo.innerHTML = "<option value=''>Seleccione una opción</option>";
+
+
+                var opcionesHijo = <?php echo json_encode($listaCT); ?>
+
+                var opciones = opcionesHijo.filter(opcion => opcion['cve_estado'] == idPadre);
+                if (opciones.length) {
+                    opciones.forEach(opcion => {
+                        hijo.innerHTML += "<option value='" + opcion['CTCveCT'] + "'>" + opcion['CTDescripcion'] + "</option>";
+                    });
+                    //hijo.style.display = "inline-block";
+                } else {
+                    // hijo.style.display = "none";
+                }
+            });
+        </script>
         <script src="assets/sweet/sweetalert2.js" type="text/javascript"></script>
         <script src="js_sistema/XHConn.js" type="text/javascript"></script>
-
         <!-- BEGIN: Vendor JS-->
         <script src="app-assets/vendors/js/vendors.min.js"></script>
         <!-- BEGIN Vendor JS-->
-
         <!-- BEGIN: Page Vendor JS-->
         <script src="app-assets/vendors/js/forms/validation/jquery.validate.min.js"></script>
         <script src="app-assets/vendors/js/pickers/flatpickr/flatpickr.min.js"></script>
-
         <!-- END: Page Vendor JS-->
-
         <!-- BEGIN: Page Vendor JS-->
         <script src="app-assets/vendors/js/pickers/pickadate/picker.js"></script>
         <script src="app-assets/vendors/js/pickers/pickadate/picker.date.js"></script>
         <script src="app-assets/vendors/js/pickers/pickadate/picker.time.js"></script>
         <script src="app-assets/vendors/js/pickers/pickadate/legacy.js"></script>
         <!-- END: Page Vendor JS-->
-
         <script src="app-assets/vendors/js/calendar/fullcalendar.min.js"></script>
         <script src="app-assets/vendors/js/extensions/moment.min.js"></script>
         <script src="app-assets/vendors/js/forms/select/select2.full.min.js"></script>
-
         <!-- BEGIN: Theme JS-->
         <script src="app-assets/js/core/app-menu.js"></script>
         <script src="app-assets/js/core/app.js"></script>
         <!-- END: Theme JS-->
-
         <!-- BEGIN: Page JS-->
         <script src="app-assets/js/scripts/forms/form-validation.js"></script>
         <!-- END: Page JS-->
-
         <!-- BEGIN: Page JS-->
         <script src="app-assets/js/scripts/forms/pickers/form-pickers.js"></script>
         <!-- END: Page JS-->
@@ -942,7 +1040,6 @@ if ($str_check) {
 
             });
         </script>
-
         <script>
             var input=  document.getElementById('TelCD2');
             input.addEventListener('input',function(){
@@ -966,8 +1063,6 @@ if ($str_check) {
                     this.value = this.value.slice(0,10);
             })
         </script>
-
-
         <script>
 
             var input=  document.getElementById('RfcIN');
@@ -990,8 +1085,6 @@ if ($str_check) {
             })
 
         </script>
-
-
         <script>
             $(window).on('load', function() {
                 if (feather) {
