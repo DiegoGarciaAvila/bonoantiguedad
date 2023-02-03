@@ -307,11 +307,9 @@ if ($__SESSION->getValueSession('nomusuario') == "") {
                     <?php
                     if ($_GET['mod'] == 66) {
                         echo (" <div>
-                                <h3>Recuerda adjuntar los 3 documentos siguientes: </h3>
+                                <h3>Recuerda adjuntar tu constancia anterior </h3>
                                 <ol>
-                                  <li>Identificación oficial vigente.</li>
-                                  <li>Último comprobante de pago.</li>
-                                  <li>Constancia anterior.</li>
+                              
                                 </ol>
                             </div>
                             <br>");

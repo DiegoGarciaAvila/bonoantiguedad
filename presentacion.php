@@ -405,7 +405,7 @@ if ($banderaPrincipal){
                     <div class="col-6 ">
                         <label class="form-label" for="CveUAIN">UNIDAD ADMINISTRATIVA</label>
                         <select class="form-control" name="CveUAIN" id="CveUAIN" required>
-                            <option value="">--SELECCION UNA OPCION--</option>
+                            <option value="0">--SELECCION UNA OPCION--</option>
                             <?php
                             foreach ($cat_unidadejecutora as $keyue) {
                                 $ue++;

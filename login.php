@@ -138,7 +138,7 @@ $struser = "";
                 }).then((result) => {
                     /* Read more about isConfirmed, isDenied below */
                     if (result.isConfirmed) {
-                        Swal.fire('COOL', '', 'success')
+                        Swal.fire('', '', 'success')
 
 
                     } else if (result.isDenied) {

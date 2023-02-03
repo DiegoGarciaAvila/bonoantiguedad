@@ -49,7 +49,7 @@ require_once '../librerias/PDOConsultas.php';
         " Sindicalizado = '" . $SindicalizadoIN . "'," .
         " NivelRango = '" . $NivelRangoIN . "'," .
         " CveE = ".$CveEstatus." " .
-        " WHERE cve_usuario = '" . $cve_usuarioIN. "'";
+        " WHERE cve_usuario = " . $cve_usuarioIN;
 
 
 

@@ -15,6 +15,9 @@ include_once('./librerias/PDOConsultas.php');
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+
 
     <?php include_once 'cabecera_sistema/cabecera_login.php';
     include_once 'librerias/PDOConsultas.php';
@@ -183,7 +186,23 @@ include_once('./librerias/PDOConsultas.php');
 
             $("#botonregistroaux").click(function(e) {
                 e.preventDefault();
-                guardaRegistro();
+
+                // Recoger el formulario
+                const form = document.getElementById("fomrgem");
+
+                if (form.checkValidity() === false) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    form.classList.add("was-validated");
+                    Swal.fire({
+                        title: "Atención!",
+                        html: "Su solicitud no será enviada, hasta que se completen todos los campos obligatorios, por favor valide y vuelva a intentarlo. ",
+                        type: "warning"
+                    });
+                } else {
+                    guardaRegistro();
+                }
+
             });
 
             function guardaRegistro() {

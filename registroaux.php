@@ -222,7 +222,7 @@ $listaZE2 = $consulta2->executeQuery("SELECT * FROM cat_zonaescolar");
                         <div class="col-6 form-group">
                             <label class="form-label" for="CveZE3">ZONA ESCOLAR</label>
                             <select class="form-control" name="CveZE3" id="CveZE3">
-                                <option value="">--SELECCION UNA OPCION--</option>
+                                <option value="0">--SELECCION UNA OPCION--</option>
                                 <?php
                                 $ze = 0;
                                 foreach ($listaZE2 as $keyZE) {
@@ -429,7 +429,20 @@ $listaZE2 = $consulta2->executeQuery("SELECT * FROM cat_zonaescolar");
     $(document).ready(function() {
         $("#botonregistroaux2").click(function(e) {
             e.preventDefault();
-            guardaRegistro();
+            const form = document.getElementById("fomrgem2");
+
+            if (form.checkValidity() === false) {
+                event.preventDefault();
+                event.stopPropagation();
+                form.classList.add("was-validated");
+                Swal.fire({
+                    title: "Atención!",
+                    html: "Su solicitud no será enviada, hasta que se completen todos los campos obligatorios, por favor valide y vuelva a intentarlo. ",
+                    type: "warning"
+                });
+            } else {
+                guardaRegistro();
+            }
         });
 
         function guardaRegistro() {
