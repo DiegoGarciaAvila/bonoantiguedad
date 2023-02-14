@@ -95,9 +95,9 @@ $listaZE2 = $consulta2->executeQuery("SELECT * FROM cat_zonaescolar");
                     <div class="row">
 
                         <div class="col-6 ">
-                            <label class="form-label" for="NombreUsuario3">NOMBRE</label>
+                            <label class="form-label" for="NombreUsuario3">NOMBRE (S)</label>
                             <input required type="text" id="NombreUsuario3" name="NombreUsuario3" class="form-control"
-                                   value="<?php echo $_POST["NombreUsuario3"]; ?>" placeholder="NOMBRE"/>
+                                   value="<?php echo $_POST["NombreUsuario3"]; ?>" placeholder="NOMBRE(S)"/>
                         </div>
 
                         <div class="col-6">
@@ -120,7 +120,7 @@ $listaZE2 = $consulta2->executeQuery("SELECT * FROM cat_zonaescolar");
                         <div class="col-4 ">
                             <label class="form-label" for="Correo3">CORREO</label>
                             <input required type="email" id="Correo3" name="Correo3" class="form-control"
-                                   value="<?php echo $_POST["Correo3"]; ?>" placeholder="CORREO"
+                                   value="<?php echo $_POST["Correo3"]; ?>" placeholder="@CORREO.COM"
                                    pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}"/>
                         </div>
 
@@ -151,10 +151,10 @@ $listaZE2 = $consulta2->executeQuery("SELECT * FROM cat_zonaescolar");
                         </div>
 
                         <div class="col-6 form-group">
-                            <label class="form-label" for="CveAds3">ADSCRIPCION</label>
+                            <label class="form-label" for="CveAds3">ADSCRIPCIÓN</label>
                             <select class="form-control" name="CveAds3" id="CveAds3" required>
 
-                                <option value="">--SELECCION UNA OPCION--</option>
+                                <option value="">--SELECCION UNA OPCIÓN--</option>
                                 <?php
                                 $la = 0;
 
@@ -176,7 +176,7 @@ $listaZE2 = $consulta2->executeQuery("SELECT * FROM cat_zonaescolar");
                         <div class="col-6 form-group">
                             <label class="form-label" for="CvePF3">PUESTO FUNCIONAL</label>
                             <select class="form-control" name="CvePF3" id="CvePF3" required>
-                                <option value="">--SELECCION UNA OPCION--</option>
+                                <option value="">--SELECCION UNA OPCIÓN--</option>
                                 <?php
                                 $pf = 0;
                                 foreach ($listaPF2 as $keypf) {
@@ -192,7 +192,7 @@ $listaZE2 = $consulta2->executeQuery("SELECT * FROM cat_zonaescolar");
                         <div class="col-6 form-group">
                             <label class="form-label" for="CveAJ3">ACTIVO/JUBILADO</label>
                             <select class="form-control" name="CveAJ3" id="CveAJ3" required>
-                                <option value="">--SELECCION UNA OPCION--</option>
+                                <option value="">--SELECCION UNA OPCIÓN--</option>
                                 <?php
                                 $aj = 0;
                                 foreach ($listaAJ2 as $keyAJ) {
@@ -207,7 +207,7 @@ $listaZE2 = $consulta2->executeQuery("SELECT * FROM cat_zonaescolar");
                         <div class="col-6 form-group">
                             <label class="form-label" for="CveAD3">ADMINISTRATIVO/DOCENTE</label>
                             <select class="form-control" name="CveAD3" id="CveAD3" required>
-                                <option value="">--SELECCION UNA OPCION--</option>
+                                <option value="">--SELECCION UNA OPCIÓN--</option>
                                 <?php
                                 $ad = 0;
                                 foreach ($listaAD2 as $keyAD) {
@@ -222,7 +222,7 @@ $listaZE2 = $consulta2->executeQuery("SELECT * FROM cat_zonaescolar");
                         <div class="col-6 form-group">
                             <label class="form-label" for="CveZE3">ZONA ESCOLAR</label>
                             <select class="form-control" name="CveZE3" id="CveZE3">
-                                <option value="0">--SELECCION UNA OPCION--</option>
+                                <option value="0">--SELECCION UNA OPCIÓN--</option>
                                 <?php
                                 $ze = 0;
                                 foreach ($listaZE2 as $keyZE) {
@@ -237,7 +237,7 @@ $listaZE2 = $consulta2->executeQuery("SELECT * FROM cat_zonaescolar");
                         <div class="col-4 form-group">
                             <label class="form-label" for="CveEst3">ESTADO DE DOMICILIO</label>
                             <select class="form-control" name="CveEst3" id="CveEst3" required>
-                                <option value="">--SELECCION UNA OPCION--</option>
+                                <option value="">--SELECCION UNA OPCIÓN--</option>
                                 <?php
                                 $est = 0;
                                 foreach ($listaEst as $keyest) {
@@ -251,21 +251,21 @@ $listaZE2 = $consulta2->executeQuery("SELECT * FROM cat_zonaescolar");
                         <div class="col-4 form-group">
                             <label class="form-label" for="CveCD3">CIUDAD DOMICILIO</label>
                             <select class="form-control" name="CveCD3" id="CveCD3" required>
-                                <option value="">--SELECCION UNA OPCION--</option>
+                                <option value="">--SELECCION UNA OPCIÓN--</option>
 
                             </select>
                         </div>
 
                         <div class="col-4 ">
-                            <label class="form-label" for="TelCD3">TELEFONO PERSONAL</label>
+                            <label class="form-label" for="TelCD3">TELÉFONO PERSONAL</label>
                             <input required type="number" id="TelCD3" name="TelCD3" class="form-control"
-                                   value="<?php echo $_POST["TelCD3"]; ?>" placeholder="TELEFONO DE DOMICILIO"/>
+                                   value="<?php echo $_POST["TelCD3"]; ?>" placeholder="TELÉFONO PERSONAL"/>
                         </div>
 
                         <div class="col-4 form-group">
                             <label class="form-label" for="CveEst32">ESTADO DE TRABAJO</label>
                             <select class="form-control" name="CveEst32" id="CveEst32" required>
-                                <option value="">--SELECCION UNA OPCION--</option>
+                                <option value="">--SELECCION UNA OPCIÓN--</option>
                                 <?php
                                 $est2 = 0;
                                 foreach ($listaEst as $keyest2) {
@@ -280,28 +280,28 @@ $listaZE2 = $consulta2->executeQuery("SELECT * FROM cat_zonaescolar");
                             <label class="form-label" for="CveCT3">CIUDAD TRABAJO</label>
                             <select class="form-control" name="CveCT3" id="CveCT3" required>
 
-                                <option value="">--SELECCION UNA OPCION--</option>
+                                <option value="">--SELECCION UNA OPCIÓN--</option>
 
                             </select>
                         </div>
 
                         <div class="col-4 ">
-                            <label class="form-label" for="TelCT3">TELEFONO TRABAJO</label>
-                            <input required type="number" id="TelCT3" name="TelCT3" class="form-control"
-                                   value="<?php echo $_POST["TelCT3"]; ?>" placeholder="TELEFONO DE TRABAJP"/>
+                            <label class="form-label" for="TelCT3">TELÉFONO TRABAJO</label>
+                            <input required type="number" inputmode="numeric" id="TelCT3" name="TelCT3" class="form-control"
+                                value="<?php echo $_POST["TelCT3"]; ?>" placeholder="TELÉFONO DE TRABAJO"/>
                         </div>
 
                         <div class="col-4 ">
                             <label class="form-label" for="Issemmym3">ISSEMMYM</label>
                             <input required type="number" id="Issemmym3" name="Issemmym3" class="form-control"
-                                   value="<?php echo $_POST["Issemmym3"]; ?>" placeholder="ISSEMMYM"/>
+                                value="<?php echo $_POST["Issemmym3"]; ?>" placeholder="ISSEMMYM"/>
                         </div>
 
 
                         <div class="col-4 form-group">
                             <label class="form-label" for="Sindicalizado3">SINDICALIZADO</label>
                             <select class="form-control" name="Sindicalizado3" id="Sindicalizado3" required>
-                                <option value="">--SELECCION UNA OPCION--</option>
+                                <option value="">--SELECCION UNA OPCIÓN--</option>
                                 <option value="SI">SI</option>
                                 <option value="NO">NO</option>
 

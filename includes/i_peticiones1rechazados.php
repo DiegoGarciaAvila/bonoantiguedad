@@ -81,7 +81,7 @@ if ($str_check) {
         //SECCION DE LOS CAMPOS DE BUSQUEDA
         /******************DESCOMENTAR ESTA SECCION SI NECESITAN CAMPOS DE BUSQUEDA**************************/
         $a_search_campo = array('PFolio','EDescripcion','c.nom_usuario','e.nom_usuario');
-        $a_search_etiqueta = array('FOLIO','ESTATUS DE LA PETICION','USUARIO','SUPERVISOR');
+        $a_search_etiqueta = array('FOLIO','ESTATUS DE LA PETICION','SERVIDOR PÚBLICO','SUPERVISOR');
         $a_search_tipo = array('text','text','text','text');
 
         //SECCION DE LOS NIVELES DE ACCESO
@@ -90,7 +90,7 @@ if ($str_check) {
         $niveles_acceso_etiqueta=array('ADJUNTAR DOCUEMENTOS');
 
         $tabla='peticiones a';
-        $campos_join  = 'a.*,b.EDescripcion,c.nom_usuario as "usuario",e.nom_usuario';
+        $campos_join  = 'a.*,b.EDescripcion,c.nom_usuario as "usuario",if(e.cve_usuario=1,"Sin asignar",e.nom_usuario) AS "nom_usuario"' ;
         $tabla_join = 'left join estatus b ON (a.PCveEfk=b.ECveE) 
         left JOIN sb_usuario c ON (a.PCveUsufk=c.cve_usuario) 
         inner JOIN sb_perfil_usuario d ON (a.PCveURfk= d.cve_perfil_usuario)
@@ -124,6 +124,10 @@ if ($str_check) {
         $contador = $contador2[0]['numeros'];
         $hoy = getdate();
         $fecha=$hoy['year'].'-'.$hoy['mon'].'-'.$hoy['mday'];
+
+
+        $selectSupervisor = $consulta2->executeQuery("SELECT * FROM sb_perfil_usuario WHERE cve_usuario=". $__SESSION->getValueSession('cveusuario'));
+        $idSupervisor=$selectSupervisor[0]['cve_perfil_usuario'];
         /***************************************************************************/
         /************************SECCION DE LOS BOTONES************************************************************************************/
         //$streditar = TRUE;
@@ -202,7 +206,7 @@ if ($str_check) {
                 $field[]=array('PObs','OBSERVACIONES','VISTA','text','NOOBLIGATORIO','varchar', '', array(0, 12),'30','',array(),'','');
 
                 $field[]=array('EDescripcion','ESTATUS DE LA PETICION','VISTA','number','OBLIGATORIO','int', '', array(0, 12),'30','',array(),'','');
-                $field[]=array('usuario','USUARIO','VISTA','number','NOOBLIGATORIO','int', '', array(0, 12),'30','',array(),'','');
+                $field[]=array('usuario','SERVIDOR PÚBLICO','VISTA','number','NOOBLIGATORIO','int', '', array(0, 12),'30','',array(),'','');
                 $field[]=array('nom_usuario','SUPERVISOR','VISTA','number','NOOBLIGATORIO','int', '', array(0, 12),'30','',array(),'','');
 
              
@@ -219,7 +223,7 @@ if ($str_check) {
                 $field[]=array('PObs','OBSERVACIONES','HIDDEN','text','NOOBLIGATORIO','varchar', '', array(0, 12),'30','SIN OBSERVACIONES',array(),'','');
 
                 $field[]=array('PCveEfk','ESTATUS DE LA PETICION','HIDDEN','number','OBLIGATORIO','int',  $selectEstatus, array(0, 12),'30',2,array(),'','');
-                $field[]=array('PCveUsufk','USUARIO','HIDDEN','number','NOOBLIGATORIO','int', '', array(0, 12),'30',$PCveUsuvalor,array(),'','');
+                $field[]=array('PCveUsufk','SERVIDOR PÚBLICO','HIDDEN','number','NOOBLIGATORIO','int', '', array(0, 12),'30',$PCveUsuvalor,array(),'','');
                 $field[]=array('PCveURfk','SUPERVISOR','HIDDEN','number','NOOBLIGATORIO','int',  $selecSupervisor, array(0, 12),'30',2,array(),'','');
                 $field[]=array('PPaso','PASO','HIDDEN','number','NOOBLIGATORIO','int',  '', array(0, 12),'30',1,array(),'','');
 
@@ -236,8 +240,9 @@ if ($str_check) {
                 $field[]=array('PObs','OBSERVACIONES','VISTA','text','NOOBLIGATORIO','varchar', '', array(0, 12),'30','',array(),'','');
 
                 $field[]=array('PCveEfk','ESTATUS DE LA PETICION','VISTA','select','OBLIGATORIO','int', $selectEstatus, array(0, 12),'30','',array(),'','');
-                $field[]=array('PCveUsufk','USUARIO','HIDDEN','number','NOOBLIGATORIO','int', '', array(0, 12),'30',$PCveUsuvalor,array(),'','');
-                $field[]=array('PCveURfk','SUPERVISOR','VISTA','select','NOOBLIGATORIO','int', $selecSupervisor, array(0, 12),'30','',array(),'','');
+                $field[]=array('PCveUsufk','SERVIDOR PÚBLICO','HIDDEN','number','NOOBLIGATORIO','int', '', array(0, 12),'30',$PCveUsuvalor,array(),'','');
+                //$field[]=array('PCveURfk','SUPERVISOR','VISTA','select','NOOBLIGATORIO','int', $selecSupervisor, array(0, 12),'30','',array(),'','');
+                $field[] = array('PCveURfk', 'SUPERVISOR', 'HIDDEN', 'text', 'NOOBLIGATORIO', 'int', '', array(0, 12), '30', $idSupervisor, array(), '', '');
 
                break;
 

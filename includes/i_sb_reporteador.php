@@ -2,9 +2,11 @@
 $str_check = FALSE;
 include_once("sb_ii_check.php");
 if ($str_check) {
+    GLOBAL $__SESSION;
     $IdPrin =$__SESSION->getValueSession('cveperfil');
     $mod=$__SESSION->getValueSession('mod');
     $consulta = new PDOConsultas();
+    global  $CFG_HOST,$CFG_USER,$CFG_DBPWD,$CFG_TIPO,$CFG_DBASE;
     $consulta->connect($CFG_HOST[0], $CFG_USER[0], $CFG_DBPWD[0], $CFG_DBASE[0], $CFG_TIPO[0]);
     $modulo_acceso = $consulta->executeQuery("SELECT *
                                                         FROM
@@ -21,7 +23,7 @@ if ($str_check) {
     //este es para generar el pdf
     $stropenPDF = "reportes/pdfnivelrango.php?";
     //este es el que pinta el reporte y sus parametros
-    $strwentidad = "entidad_reporteador.php";
+    $str_entidad = "entidad_reporteador.php";
 
     $fileExcel = true;
     $filePDF = true;

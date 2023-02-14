@@ -72,9 +72,9 @@ include_once('./librerias/PDOConsultas.php');
                     <form method="POST" id="fomrgem">
                         <div class="row">
                             <div class="form-group ">
-                                <label for="claveservidorpublico">CLAVE SERVIDOR PUBLICO</label>
-                                <input  required type="number" class="form-control" id="claveservidorpublico" name="claveservidorpublico" aria-describedby="claveservidorpublico" placeholder="Clave servidor publico" value="<?php  echo $_POST['claveservidorpublico'] ?>">
-                                <small id="claveservidorpublicoHelp" class="form-text text-muted">Clave de servidor</small>
+                                <label for="claveservidorpublico">CLAVE SERVIDOR PÚBLICO</label>
+                                <input  required type="number" class="form-control" id="claveservidorpublico" name="claveservidorpublico" aria-describedby="claveservidorpublico" placeholder="Clave servidor público" value="<?php  echo $_POST['claveservidorpublico'] ?>">
+                                <small id="claveservidorpublicoHelp" class="form-text text-muted">Clave de Servidor Público</small>
                             </div>
                             <div class="form-group ">
                                 <label for="nombreservidor">NOMBRE</label>
@@ -82,9 +82,9 @@ include_once('./librerias/PDOConsultas.php');
                                 <small id="nombreservidorHelp" class="form-text text-muted">Nombre</small>
                             </div>
                             <div class="form-group ">
-                                <label for="telcd">TELEFONO DE DOMICILIO</label>
+                                <label for="telcd">TELÉFONO</label>
                                 <input required type="number" class="form-control" id="telcd" name="telcd" aria-describedby="telcd" placeholder="Telefono de domicilio" value="<?php  echo $_POST['telcd'] ?>">
-                                <small id="telcdHelp" class="form-text text-muted">Telefono de domicilio</small>
+                                <small id="telcdHelp" class="form-text text-muted">Teléfono</small>
                             </div>
                             <div class="form-group ">
                                 <label for="correo">CORREO</label>

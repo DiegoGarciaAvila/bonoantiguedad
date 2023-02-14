@@ -28,14 +28,14 @@ if ($__SESSION->getValueSession('nomusuario') == "") {
                         <div class="col-md-8 col-12 mb-1">
                             <div class="input-group">
                             <input type="hidden" name="report" id="report" value="">
+                        
                             <select class="selectpicker form-control" data-live-search="true" title="SELECCIONE" id="reporte" name="data[reporte]">
                                 <option value="">-SELECCIONE-</option>
-                                <option value="1">Concentrado Nivel y Rango</option>
-                                <option value="2">Concentrado Horas Clase</option>
-                                <option value="3">Concentrado Tabulares</option>
-                                <option value="4">Concentrado Quinquenios</option>
-                                <option value="5">Concentrado Total Plazas</option>
-                                <option value="6">Concentrado Burocratas</option>
+                                <option value="1">USUARIOS CON BONO</option>
+                                <option value="2">USUARIOS RECHAZADOS</option>
+                                <option value="3">USUARIOS </option>
+                        
+               
                             </select>
                             </div>
                         </div>

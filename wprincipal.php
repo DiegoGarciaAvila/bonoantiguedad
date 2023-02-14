@@ -23,7 +23,7 @@ if ($str_check) {
         <meta name="description" content="">
         <meta name="keywords" content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
         <meta name="author" content="PIXINVENT">
-        <title>SECTOR AUXILIAR</title>
+        <title>RECOMPENSA POR PERMANENCIA EN EL SERVICIO</title>
         <link rel="apple-touch-icon" href="imagenes_sistema/escudo_estado_mexico.png">
         <link rel="shortcut icon" type="image/x-icon" href="imagenes_sistema/escudo_estado_mexico.png">
         <link href="app-assets/fonts/font-awesome/css/font-awesome.css" rel="stylesheet">
@@ -776,7 +776,7 @@ if ($str_check) {
                                             </select>
                                         </div>
                                         <div class="col-6 ">
-                                            <label class="form-label" for="TelCT2">TELEFONO TRABAJO</label>
+                                            <label class="form-label" for="TelCT2">TELÉFONO TRABAJO</label>
                                             <input type="number" id="TelCT2" name="TelCT2" class="form-control" value="<?= $TelCT ?>" data-msg="Please enter your last name" />
                                         </div>
                                         <div class="col-6 ">
@@ -784,7 +784,7 @@ if ($str_check) {
                                             <input type="number" id="Issemmym2" name="Issemmym2" class="form-control" readonly value="<?= $Issemmym ?>" data-msg="Please enter your last name" />
                                         </div>
                                         <div class="col-6 ">
-                                            <label class="form-label" for="FechaIngIss2">FECHA INGRESO AISSEMMYM</label>
+                                            <label class="form-label" for="FechaIngIss2">FECHA INGRESO A ISSEMMYM</label>
                                             <input type="date" id="FechaIngIss2" name="FechaIngIss2" class="form-control" readonly value="<?= $FechaIngIss ?>" data-msg="Please enter your last name" />
                                         </div>
                                         <div class="col-12 ">
@@ -916,7 +916,7 @@ if ($str_check) {
                     formData.append("CveEstatus",<?=$CveEstatus?> );
                     formData.append("cve_usuario",<?= $__SESSION->getValueSession('cveusuario') ?> );
 
-
+                    console.log(formData);
                     $.ajax({
                         url: "ajax_sistema/actualizar_inicio.php",
                         type: "post",

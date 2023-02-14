@@ -102,12 +102,6 @@ $struser = "";
                                     </div>
                                     <button class="btn btn-primary w-100" tabindex="4" id="btningresa">INGRESAR AL SISTEMA</button>
                                 </form>
-                                <p class="text-center mt-2"><span>¿Eres Nuevo?</span><a data-bs-toggle="collapse" href="#collapseExample" aria-controls="collapseExample"><span>&nbsp;CREAR UNA CUENTA</span></a></p>
-                                <div class="collapse" id="collapseExample">
-                                    <div class="card card-body">
-                                        <p style='text-align: justify;'>Tu usuario y contraseña son los datos de acceso al sistema<b>G2G</b></p>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                         <!-- /Login-->
